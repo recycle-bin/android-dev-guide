@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.njlabs.guide.android.dev"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppBaseTheme" >
+        <activity
+            android:name="com.njlabs.guide.android.dev.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.Introduction"
+            android:label="@string/title_activity_introduction" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.KeyTerms"
+            android:label="@string/title_activity_key_terms" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.Prerequisites"
+            android:label="@string/title_activity_prerequisites" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.GooglePlayPublishing"
+            android:label="@string/title_activity_google_play_publishing" >
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">A Guide to Android Development</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_introduction">Introduction</string>
+    <string name="dummy">"                     "</string>
+    <string name="title_activity_key_terms">Key Terms</string>
+    <string name="title_activity_prerequisites">Prerequisites</string>
+    <string name="title_activity_google_play_publishing">Publishing to Google Play</string>
+
+</resources>
