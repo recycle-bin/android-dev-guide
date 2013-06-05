@@ -6,23 +6,21 @@ import java.util.List;
 import java.util.Map;
 
 import com.njlabs.guide.android.dev.adapters.ExpandableListAdapter;
- 
-import android.annotation.TargetApi;
-import android.app.Activity;
+
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
  
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-public class MainActivity extends Activity {
+public class MainActivity extends SherlockActivity {
  
     List<String> groupList;
     List<String> childList;
@@ -398,7 +396,7 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
     	
-        getMenuInflater().inflate(R.menu.main, menu);
+    	getSupportMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
     @Override
