@@ -71,7 +71,7 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("The Android SDK"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), AndroidSDK.class);
                		startActivity(it);
                 }
                 else if (selected.equals("Choosing an IDE"))

@@ -9,5 +9,6 @@
     <string name="title_activity_key_terms">Key Terms</string>
     <string name="title_activity_prerequisites">Prerequisites</string>
     <string name="title_activity_google_play_publishing">Publishing to Google Play</string>
+    <string name="title_activity_android_sdk">The Android SDK</string>
 
 </resources>
