@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.njlabs.guide.android.dev.adapters.ExpandableListAdapter;
 
+import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
@@ -31,6 +32,9 @@ public class MainActivity extends SherlockActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setTitle("Android Development");
+        actionBar.setSubtitle("A small Guide !");
         
         createGroupList();
  
