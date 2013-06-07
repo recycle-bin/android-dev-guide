@@ -80,7 +80,7 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("Choosing an IDE"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), ChoosingIDE.class);
                		startActivity(it);
                 }
                 else if (selected.equals("ADT Plugin for Eclipse"))
