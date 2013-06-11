@@ -1,6 +1,6 @@
 ![android-dev-guide](https://raw.github.com/niranjan94/android-dev-guide/gh-pages/images/cover.jpg "android-dev-guide") 
 
-## What is it?  ##
+## What is it?  ## 
  A featured Guide to Android Development with full working demos and code-samples.
 
 > - **MIN ANDROID API :** API8
