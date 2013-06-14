@@ -90,7 +90,7 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("Creating your first project"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), FirstApp.class);
                		startActivity(it);
                 }
                 else if (selected.equals("Folder Structure"))

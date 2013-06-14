@@ -12,5 +12,7 @@
     <string name="title_activity_android_sdk">The Android SDK</string>
     <string name="title_activity_choosing_ide">Choosing an IDE</string>
     <string name="title_activity_adtplugin">ADT Plugin for Eclipse</string>
+    <string name="title_activity_first_app">Creating Your First App</string>
+    <string name="title_activity_image_viewer">Image Viewer</string>
 
 </resources>

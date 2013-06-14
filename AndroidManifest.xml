@@ -38,6 +38,26 @@
             android:name="com.njlabs.guide.android.dev.GooglePlayPublishing"
             android:label="@string/title_activity_google_play_publishing" >
         </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.AndroidSDK"
+            android:label="@string/title_activity_android_sdk" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.ChoosingIDE"
+            android:label="@string/title_activity_choosing_ide" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.ADTplugin"
+            android:label="@string/title_activity_adtplugin" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.FirstApp"
+            android:label="@string/title_activity_first_app" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.ImageViewer"
+            android:label="@string/title_activity_image_viewer" >
+        </activity>
     </application>
 
 </manifest>

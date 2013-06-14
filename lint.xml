@@ -7,6 +7,7 @@
     <issue id="PxUsage">
         <ignore path="res/layout/activity_main.xml" />
     </issue>
+    <issue id="SetJavaScriptEnabled" severity="ignore" />
     <issue id="UseCompoundDrawables">
         <ignore path="res/layout/activity_main.xml" />
     </issue>
