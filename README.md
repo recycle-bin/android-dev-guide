@@ -4,7 +4,7 @@
  A featured Guide to Android Development with full working demos and code-samples.
 
 > - **MIN ANDROID API :** API8
-> - **STATUS** : Work in Progress
+> - **STATUS** : Work in Progress. Nearing Completion
 > - **ETA** : Don't Ask !
 
 ## Planned Features
