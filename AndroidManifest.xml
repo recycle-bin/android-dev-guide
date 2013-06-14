@@ -58,6 +58,30 @@
             android:name="com.njlabs.guide.android.dev.ImageViewer"
             android:label="@string/title_activity_image_viewer" >
         </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.FolderStructure"
+            android:label="@string/title_activity_folder_structure" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.AppTesting"
+            android:label="@string/title_activity_app_testing" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.ListView"
+            android:label="@string/title_activity_list_view" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.ListViewDemo"
+            android:label="@string/title_activity_list_view_demo" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.SpinnerDropdown"
+            android:label="@string/title_activity_spinner_dropdown" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.SpinnerDemo"
+            android:label="@string/title_activity_spinner_demo" >
+        </activity>
     </application>
 
 </manifest>

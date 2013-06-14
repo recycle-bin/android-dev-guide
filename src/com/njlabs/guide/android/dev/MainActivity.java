@@ -100,12 +100,12 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("Testing the app"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), AppTesting.class);
                		startActivity(it);
                 }
                 else if (selected.equals("Views"))
                 {
-                	final CharSequence[] items = {"Layouts", "View Groups","List Views"};
+                	final CharSequence[] items = {"List View","Spinner"};
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle("Select one to know more !");
                     builder.setItems(items, new DialogInterface.OnClickListener() {
@@ -115,14 +115,14 @@ public class MainActivity extends SherlockActivity {
                                		Intent it  = new Intent(getBaseContext(), MainActivity.class);
                                		startActivity(it);
                                	}
-                               	else if(items[item]=="View Groups")
+                               	else if(items[item]=="Spinner")
                                	{
-                               		Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                               		Intent it  = new Intent(getBaseContext(), SpinnerDropdown.class);
                                		startActivity(it);
                                	}
-                               	else if(items[item]=="List Views")
+                               	else if(items[item]=="List View")
                                	{
-                               		Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                               		Intent it  = new Intent(getBaseContext(), ListView.class);
                                		startActivity(it);
                                	}    
                                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);

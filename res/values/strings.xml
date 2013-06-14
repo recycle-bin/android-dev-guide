@@ -15,5 +15,11 @@
     <string name="title_activity_first_app">Creating Your First App</string>
     <string name="title_activity_image_viewer">Image Viewer</string>
     <string name="title_activity_folder_structure">Folder Structure</string>
+    <string name="title_activity_app_testing">Testing Your App</string>
+    <string name="title_activity_list_view">List View</string>
+    <string name="title_activity_list_view_demo">List View Demo</string>
+    <string name="title_activity_spinner_dropdown">Spinner Dropdown</string>
+    <string name="title_activity_spinner_demo">Spinner Dropdown Demo</string>
+    <string name="spinner_title">Select an Option</string>
 
 </resources>

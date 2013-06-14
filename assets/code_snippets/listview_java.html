@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/ListViewDemo.java
+///
+package com.njlabs.guide.android.dev;
+
+import android.app.ActionBar;
+import android.app.ListActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
+
+public class ListViewDemo extends ListActivity  {
+
+	/// THE LIST ITEMS TO BE SHOWN
+	static final String[] LIST_ITEMS = new String[] { &quot;Item 1&quot;, &quot;Item 2&quot;, &quot;Item 3&quot;,
+		&quot;Item 4&quot;, &quot;Item 5&quot;, &quot;Item 6&quot;, &quot;Item 7&quot;, &quot;Item 8&quot;,&quot;Item 9&quot;, &quot;Item 10&quot; };
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+        /// WE DON'T NEED TO USE setContentView(R.layout.list_view_demo);
+		/// AS THE LAYOUT IS PROGRAMATTICALLY SET BY THE LIST ADAPTER
+		
+		setListAdapter(new ArrayAdapter&lt;String&gt;(this, R.layout.list_view_demo,LIST_ITEMS));
+		 
+		ListView listView = getListView();
+		listView.setTextFilterEnabled(true);
+		
+		/// CREATE AN ONCLICK LISTENER TO KNOW WHEN EACH ITEM IS CLICKED
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView&lt;?&gt; parent, View view,
+					int position, long id) {
+			    // When clicked, show a toast with the TextView text
+			    Toast.makeText(getApplicationContext(),
+				((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+			}
+		});
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}
+</pre></body></html>
