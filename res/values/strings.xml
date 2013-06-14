@@ -14,5 +14,6 @@
     <string name="title_activity_adtplugin">ADT Plugin for Eclipse</string>
     <string name="title_activity_first_app">Creating Your First App</string>
     <string name="title_activity_image_viewer">Image Viewer</string>
+    <string name="title_activity_folder_structure">Folder Structure</string>
 
 </resources>

@@ -95,7 +95,7 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("Folder Structure"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), FolderStructure.class);
                		startActivity(it);
                 }
                 else if (selected.equals("Testing the app"))
