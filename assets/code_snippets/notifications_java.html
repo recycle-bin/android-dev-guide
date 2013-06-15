@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/Notifications.java
+///
+// Prepare intent which is triggered if the
+// notification is selected		
+Intent intent = new Intent(); // This is a blank intent. No ACtivity is opened
+
+//Intent intent = new Intent(this, ActivityToOpen.class); // USE THIS TO OPEN ACTIVITY ON CLICK
+
+PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+int currentapiVersion = android.os.Build.VERSION.SDK_INT; // GET CURRENT API LEVEL
+		
+if (currentapiVersion &lt; android.os.Build.VERSION_CODES.JELLY_BEAN)
+{
+	// USING COMPATIBILY CLASS NotificationCompat FOR API &lt; 16 (JELLY_BEAN) From android-support-v4.jar
+	NotificationCompat.Builder noti = new NotificationCompat.Builder(this)
+       .setContentTitle(&quot;This is the Notification Title&quot;)
+       .setContentText(&quot;Here is the the message that you can display to the user. &quot;)
+       .setSmallIcon(R.drawable.ic_launcher)
+       .setContentIntent(pIntent)
+       .addAction(R.drawable.accept, &quot;Button1&quot;, pIntent)
+       .addAction(R.drawable.cancel, &quot;Button2&quot;, pIntent);		
+
+	NotificationManager notificationManager = 
+			(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+	
+	// For Hiding the notification after its selected
+	noti.setAutoCancel(true);
+	notificationManager.notify(0, noti.build());			
+					
+}
+else if(currentapiVersion &gt;= android.os.Build.VERSION_CODES.JELLY_BEAN)
+{
+	// USING DEFAULT CLASS FOR API &gt;= 16 (JELLY_BEAN)
+	Notification noti = new Notification.Builder(this)
+       .setContentTitle(&quot;This is the Notification Title&quot;)
+       .setContentText(&quot;Here is the the message that you can display to the user. &quot;)
+       .setSmallIcon(R.drawable.ic_launcher)
+       .setContentIntent(pIntent)
+       .addAction(R.drawable.accept, &quot;Button1&quot;, pIntent)
+       .addAction(R.drawable.cancel, &quot;Button2&quot;, pIntent).build();	    
+	  
+	NotificationManager notificationManager = 
+			(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            
+	// For Hiding the notification after its selected
+	noti.flags |= Notification.FLAG_AUTO_CANCEL;
+	notificationManager.notify(0, noti); 			
+}		
+</pre></body></html>

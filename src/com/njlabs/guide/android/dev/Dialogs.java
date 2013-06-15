@@ -6,7 +6,6 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.Menu;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
@@ -29,8 +28,6 @@ public class Dialogs extends SherlockActivity {
 		Bundle extras = getIntent().getExtras();
 		title = extras.getString("title");
 		codesnippet = extras.getString("codesnippet");
-		Log.d("Title:",title);
-		Log.d("codesnippet:",codesnippet);
 		ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(title);

@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.view.MenuItem;
+import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -15,12 +18,18 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
  
+@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class SpinnerDemo extends Activity implements OnItemSelectedListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.spinner_demo);
- 
+		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+		if (currentapiVersion >= android.os.Build.VERSION_CODES.HONEYCOMB)
+		{
+			ActionBar actionBar = getActionBar();
+	        actionBar.setDisplayHomeAsUpEnabled(true);
+		}
         // Spinner element
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
  

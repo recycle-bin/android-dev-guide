@@ -17,7 +17,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
@@ -141,7 +140,6 @@ public class MainActivity extends SherlockActivity {
                         public void onClick(DialogInterface dialog, int item) {
                                	if(items[item]=="Simple Dialog")
                                	{
-                               		Log.d("ENtered","Simple");
                                		Intent it  = new Intent(getBaseContext(), Dialogs.class);
                                		it.putExtra("title",items[item]);
                                		it.putExtra("codesnippet","simple_dialog");
@@ -168,6 +166,7 @@ public class MainActivity extends SherlockActivity {
                                		it.putExtra("codesnippet","custom_dialog");
                                		startActivity(it);
                                	}
+                               	overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                           }
                     });
                     AlertDialog alert = builder.create();
@@ -176,29 +175,28 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("Notifications"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), Notifications.class);
                		startActivity(it);
                 }
                 else if (selected.equals("Image Resources"))
                 {
-                	final CharSequence[] items = {"Project Images", "Bitmap Objects","Drawing on Canvas"};
+                	final CharSequence[] items = {"Project Images", "Bitmap Objects on Canvas"};
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle("Select one to know more !");
                     builder.setItems(items, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int item) {
                                	if(items[item]=="Project Images")
                                	{
-                               		Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                               		Intent it  = new Intent(getBaseContext(), ImageResources.class);
+                               		it.putExtra("title",items[item]);
+                               		it.putExtra("codesnippet","project_images");
                                		startActivity(it);
                                	}
-                               	else if(items[item]=="Bitmap Objects")
+                               	else if(items[item]=="Bitmap Objects on Canvas")
                                	{
-                               		Intent it  = new Intent(getBaseContext(), MainActivity.class);
-                               		startActivity(it);
-                               	}
-                               	else if(items[item]=="Drawing on Canvas")
-                               	{
-                               		Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                               		Intent it  = new Intent(getBaseContext(), ImageResources.class);
+                               		it.putExtra("title",items[item]);
+                               		it.putExtra("codesnippet","bitmap_canvas");
                                		startActivity(it);
                                	}   
                                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
@@ -209,17 +207,23 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("Regular Thread"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), Threads.class);
+                	it.putExtra("title",selected);
+               		it.putExtra("codesnippet","regular_thread");
                		startActivity(it);
                 }
                 else if (selected.equals("A Thread with a handler"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), Threads.class);
+                	it.putExtra("title",selected);
+               		it.putExtra("codesnippet","thread_handler");
                		startActivity(it);
                 }
                 else if (selected.equals("An AsyncTask"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), Threads.class);
+                	it.putExtra("title",selected);
+               		it.putExtra("codesnippet","asynctask");
                		startActivity(it);
                 }
                 else if (selected.equals("Timer"))

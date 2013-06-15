@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/BitmapCanvas.java
+///
+package com.njlabs.guide.android.dev;
+
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+
+public class BitmapCanvas extends Activity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(new BitmapView(this));
+    }
+  
+    class BitmapView extends View {
+        public BitmapView(Context context) {
+            super(context);
+        }
+  
+        @Override
+        public void onDraw(Canvas canvas) {
+            Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.sample_img);
+            canvas.drawColor(Color.BLACK);
+            canvas.drawBitmap(bmp, 10, 10, null);
+        }
+    }
+}
+</pre></body></html>

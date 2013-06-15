@@ -22,5 +22,9 @@
     <string name="title_activity_spinner_demo">Spinner Dropdown Demo</string>
     <string name="spinner_title">Select an Option</string>
     <string name="title_activity_dialogs">Dialogs</string>
+    <string name="title_activity_notifications">Notifications</string>
+    <string name="title_activity_image_resources">Image Resources</string>
+    <string name="title_activity_bitmap_canvas">Bitmap Objects on Canvas Demo</string>
+    <string name="title_activity_threads">Threads</string>
 
 </resources>

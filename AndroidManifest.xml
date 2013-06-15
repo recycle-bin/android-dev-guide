@@ -86,6 +86,22 @@
             android:name="com.njlabs.guide.android.dev.Dialogs"
             android:label="@string/title_activity_dialogs" >
         </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.Notifications"
+            android:label="@string/title_activity_notifications" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.ImageResources"
+            android:label="@string/title_activity_image_resources" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.BitmapCanvas"
+            android:label="@string/title_activity_bitmap_canvas" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.Threads"
+            android:label="@string/title_activity_threads" >
+        </activity>
     </application>
 
 </manifest>
