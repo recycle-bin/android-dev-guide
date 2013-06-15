@@ -228,7 +228,7 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("Timer"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), TimerDemo.class);
                		startActivity(it);
                 }
                 else if (selected.equals("What is an Intent?"))

@@ -12,7 +12,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppBaseTheme" >
+        android:theme="@style/AppBaseTheme">
         <activity
             android:name="com.njlabs.guide.android.dev.MainActivity"
             android:label="@string/app_name" >
@@ -101,6 +101,10 @@
         <activity
             android:name="com.njlabs.guide.android.dev.Threads"
             android:label="@string/title_activity_threads" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.TimerDemo"
+            android:label="@string/title_activity_timer" >
         </activity>
     </application>
 
