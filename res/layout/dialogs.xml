@@ -1,0 +1,97 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollViewDialogs"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" 
+    android:scrollbarStyle="outsideInset">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textViewDialogs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummy"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textView1Dialogs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummy"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+        <Button
+            android:layout_width="220dp"
+            android:id="@+id/demo_btn_Dialogs"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/demo"
+            android:gravity="left|center_vertical"
+            android:onClick="DemoDialog"
+            android:text="See the Demo" />
+
+        <TextView
+            android:id="@+id/textView6Dialogs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummy"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+        <TextView
+            android:id="@+id/textViewDialogs7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Android Layout XML file:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		<TextView
+            android:id="@+id/textViewDialogsdum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummy"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <WebView
+            android:id="@+id/webViewXML"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarStyle="insideOverlay"
+            android:scrollbars="horizontal" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummy"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+ 		<TextView
+ 		    android:id="@+id/textViewFirstApp8"
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="Android Java file:"
+ 		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+ 		<TextView
+ 		    android:id="@+id/textView4"
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="@string/dummy"
+ 		    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <WebView
+            android:id="@+id/webViewJava"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            android:scrollbarStyle="insideOverlay" />
+
+    </LinearLayout>
+
+</ScrollView>

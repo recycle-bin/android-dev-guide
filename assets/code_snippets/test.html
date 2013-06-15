@@ -1,27 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
 <pre class="prettyprint linenums">
-&lt;!--
-    FILE : res/layout/spinner_demo.xml
---&gt;
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:orientation=&quot;vertical&quot;
-    android:padding=&quot;10dip&quot;
-    android:layout_width=&quot;fill_parent&quot;
-    android:layout_height=&quot;wrap_content&quot;&gt;
- 
-    &lt;!-- Text Label --&gt;
-    &lt;TextView
-        android:layout_width=&quot;fill_parent&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:layout_marginTop=&quot;10dip&quot;
-        android:text=&quot;The New Spinner :&quot;
-        android:layout_marginBottom=&quot;5dp&quot;  /&gt;
- 
-    &lt;!-- Spinner Element --&gt;
-    &lt;Spinner
-        android:id=&quot;@+id/spinner&quot;
-        android:layout_width=&quot;fill_parent&quot;
-        android:layout_height=&quot;wrap_content&quot;
-        android:prompt=&quot;@string/spinner_title&quot;  /&gt;
-&lt;/LinearLayout&gt;</pre></body></html>
+AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        	builder.setTitle(\"The Dialog's Title\")
+            .setIcon(R.drawable.info)
+        	.setMessage(\"This is a simple message. Try to press any one of the buttons below.\")
+        	      .setCancelable(false)
+        	      .setPositiveButton(\"Yes !\", new DialogInterface.OnClickListener() {
+        	          public void onClick(DialogInterface dialog, int id) {
+        	        	  Toast.makeText(getBaseContext(), \"You clicked the YES !\", Toast.LENGTH_LONG).show();
+        	          }
+        	      })
+			.setNegativeButton(\"No !\", new DialogInterface.OnClickListener() {
+			          public void onClick(DialogInterface dialog, int id) {
+			        	  Toast.makeText(getBaseContext(), \"You clicked NO !\", Toast.LENGTH_LONG).show();
+			          }
+			      });
+        	AlertDialog alert = builder.create();
+        	alert.show();  
+</pre></body></html>

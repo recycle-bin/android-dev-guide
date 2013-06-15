@@ -21,5 +21,6 @@
     <string name="title_activity_spinner_dropdown">Spinner Dropdown</string>
     <string name="title_activity_spinner_demo">Spinner Dropdown Demo</string>
     <string name="spinner_title">Select an Option</string>
+    <string name="title_activity_dialogs">Dialogs</string>
 
 </resources>

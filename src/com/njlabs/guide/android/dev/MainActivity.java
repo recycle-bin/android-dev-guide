@@ -17,6 +17,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
@@ -140,24 +141,33 @@ public class MainActivity extends SherlockActivity {
                         public void onClick(DialogInterface dialog, int item) {
                                	if(items[item]=="Simple Dialog")
                                	{
-                               		Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                               		Log.d("ENtered","Simple");
+                               		Intent it  = new Intent(getBaseContext(), Dialogs.class);
+                               		it.putExtra("title",items[item]);
+                               		it.putExtra("codesnippet","simple_dialog");
                                		startActivity(it);
                                	}
                                	else if(items[item]=="Response Dialog")
                                	{
-                               		Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                               		Intent it  = new Intent(getBaseContext(), Dialogs.class);
+                               		it.putExtra("title",items[item]);
+                               		it.putExtra("codesnippet","response_dialog");
                                		startActivity(it);
                                	}
                                	else if(items[item]=="List Dialog")
                                	{
-                               		Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                               		Intent it  = new Intent(getBaseContext(), Dialogs.class);
+                               		it.putExtra("title",items[item]);
+                               		it.putExtra("codesnippet","list_dialog");
                                		startActivity(it);
                                	}   
                                	else if(items[item]=="Custom Dialog")
                                	{
-                               		Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                               		Intent it  = new Intent(getBaseContext(), Dialogs.class);
+                               		it.putExtra("title",items[item]);
+                               		it.putExtra("codesnippet","custom_dialog");
                                		startActivity(it);
-                               	}    
+                               	}
                           }
                     });
                     AlertDialog alert = builder.create();

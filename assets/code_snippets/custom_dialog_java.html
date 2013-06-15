@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/Dialogs.java
+///
+AlertDialog.Builder alt_bld = new AlertDialog.Builder(this);
+LayoutInflater factory = LayoutInflater.from(this);
+final View textEntryView = factory.inflate(R.layout.dialog_custom_demo, null);
+alt_bld.setView(textEntryView).setCancelable(true)
+.setNegativeButton("Cancel",
+    new DialogInterface.OnClickListener() {
+        public void onClick(DialogInterface dialog, int id) {
+            Toast.makeText(getBaseContext(), "You pressed cancel ", Toast.LENGTH_LONG).show();
+            dialog.cancel();
+        }
+})
+.setPositiveButton("Submit !", new DialogInterface.OnClickListener() {
+    public void onClick(DialogInterface dialog, int id) {
+        EditText editText = (EditText) textEntryView.findViewById(R.id.EditText);
+        String value = editText.getText().toString();
+        Toast.makeText(getBaseContext(), "You have typed "+value, Toast.LENGTH_LONG).show();
+    }
+});
+        	                    
+AlertDialog alert = alt_bld.create();
+alert.setTitle("A custom Dialog Example");
+alert.setIcon(R.drawable.info);
+alert.show();
+</pre></body></html>
