@@ -233,17 +233,23 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("What is an Intent?"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+               		Intent it  = new Intent(getBaseContext(), Intents.class);
+               		it.putExtra("title",selected);
+               		it.putExtra("codesnippet","intent_basics");
                		startActivity(it);
                 }
                 else if (selected.equals("Opening a new screen"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), Intents.class);
+               		it.putExtra("title",selected);
+               		it.putExtra("codesnippet","intent_screen");
                		startActivity(it);
                 }
                 else if (selected.equals("Intents Quick reference"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), Intents.class);
+               		it.putExtra("title",selected);
+               		it.putExtra("codesnippet","intent_quick_reference");
                		startActivity(it);
                 }
                 else if (selected.equals("Network"))

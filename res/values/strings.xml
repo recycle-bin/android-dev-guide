@@ -27,5 +27,6 @@
     <string name="title_activity_bitmap_canvas">Bitmap Objects on Canvas Demo</string>
     <string name="title_activity_threads">Threads</string>
     <string name="title_activity_timer">Timer Task</string>
+    <string name="title_activity_intents">Intents</string>
 
 </resources>
