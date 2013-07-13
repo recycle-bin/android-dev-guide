@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <TextView
@@ -25,85 +25,115 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Connecting to the Internet and recieveing/sending data from/to some servers is an integral part of Internet-enabled applications. \n\nSo, Let&apos;s see how we can make use of the internet to display content.\n\nBut before you start, You MUST add this line in you Android Manifest file !"
+            android:text="In Any Android app, there may arise a need for you to store persistant data. Like any user settings, or images, or videos. Let&apos;s see how we can do that."
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <WebView
-            android:id="@+id/webView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbarStyle="outsideInset"
-            android:scrollbars="horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" "
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-		<TextView
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Show an External Website"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-		<TextView
- 		    android:layout_width="wrap_content"
- 		    android:layout_height="wrap_content"
- 		    android:text="@string/dummy"
- 		    android:textAppearance="?android:attr/textAppearanceSmall" />
+            android:text="TextHere"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Demo :"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-        <TextView
- 		    android:layout_width="wrap_content"
- 		    android:layout_height="wrap_content"
- 		    android:text="@string/dummy"
- 		    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-        <WebView
-            android:id="@+id/webView2"
-            android:layout_width="match_parent"
-            android:layout_height="250dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Android Layout XML file:"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-		<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dummy"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <WebView
-            android:id="@+id/webViewXMLExternal"
+        <EditText
+            android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbarStyle="insideOverlay"
-            android:scrollbars="horizontal" />
+            android:ems="10"
+            android:hint="Enter something !" >
+        </EditText>
 
         <TextView
+            android:id="@+id/textViewStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:text=" "
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#00CC18" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center" >
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="Store"
+                android:text="Store" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="Clear"
+                android:text="Clear" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="Read"
+                android:text="Read" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dummy"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
  		<TextView
+ 		    android:id="@+id/textViewFirstApp8"
  		    android:layout_width="wrap_content"
  		    android:layout_height="wrap_content"
  		    android:text="Android Java file:"
  		    android:textAppearance="?android:attr/textAppearanceMedium" />
 
  		<TextView
+ 		    android:id="@+id/textView4"
  		    android:layout_width="wrap_content"
  		    android:layout_height="wrap_content"
  		    android:text="@string/dummy"
  		    android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <WebView
-            android:id="@+id/webViewJavaExternal"
+            android:id="@+id/webViewJavaStorage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollbars="horizontal"

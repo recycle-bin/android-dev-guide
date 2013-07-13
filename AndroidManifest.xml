@@ -157,6 +157,15 @@
             android:name="com.njlabs.guide.android.dev.ContactMe"
             android:label="@string/title_activity_contact_me" >
         </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.AudioVideo"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_audio_video" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.Storage"
+            android:label="@string/title_activity_storage" >
+        </activity>
     </application>
 
 </manifest>

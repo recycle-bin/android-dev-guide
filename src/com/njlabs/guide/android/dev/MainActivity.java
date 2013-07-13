@@ -267,12 +267,12 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("Network"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), Network.class);
                		startActivity(it);
                 }
                 else if (selected.equals("Audio and Video"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), AudioVideo.class);
                		startActivity(it);
                 }
                 else if (selected.equals("Storage"))
@@ -284,17 +284,23 @@ public class MainActivity extends SherlockActivity {
                         public void onClick(DialogInterface dialog, int item) {
                                	if(items[item]=="Shared Preferences")
                                	{
-                               		Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                               		Intent it  = new Intent(getBaseContext(), Storage.class);
+                               		it.putExtra("title",items[item]);
+                               		it.putExtra("codesnippet","shared_prefs");
                                		startActivity(it);
                                	}
                                	else if(items[item]=="Internal Memory")
                                	{
-                               		Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                               		Intent it  = new Intent(getBaseContext(), Storage.class);
+                               		it.putExtra("title",items[item]);
+                               		it.putExtra("codesnippet","internal_mem");
                                		startActivity(it);
                                	}
                                	else if(items[item]=="External Memory")
                                	{
-                               		Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                               		Intent it  = new Intent(getBaseContext(), Storage.class);
+                               		it.putExtra("title",items[item]);
+                               		it.putExtra("codesnippet","external_mem");
                                		startActivity(it);
                                	}   
                                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);

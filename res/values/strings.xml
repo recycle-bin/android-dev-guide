@@ -32,5 +32,7 @@
     <string name="title_activity_about_app">About this App</string>
     <string name="title_activity_bug_report">Report a Bug</string>
     <string name="title_activity_contact_me">Contact Me</string>
+    <string name="title_activity_audio_video">Audio &amp; Video</string>
+    <string name="title_activity_storage">Storage</string>
 
 </resources>

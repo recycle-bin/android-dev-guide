@@ -1,0 +1,252 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
+   	android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_above="@+id/ad"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:scrollbarStyle="outsideInset" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Using audio and video in your application increases the User Experience especially if you&apos;re making any Game (or) a media-oriented app (like a music/video player). \n\nSo, let&apos;s see how we can make our app play a Video/Audio file !"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Play an Internal Audio"
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+		<TextView
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="@string/dummy"
+ 		    android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demo :"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="@string/dummy"
+ 		    android:textAppearance="?android:attr/textAppearanceSmall" />
+		<Button
+			android:id="@+id/btn_start_audio_internal"
+			android:layout_width="120dp"
+			android:layout_gravity="center"
+			android:layout_height="wrap_content"
+			android:drawableLeft="@drawable/demo"
+			android:gravity="left|center_vertical"
+			android:onClick="PlayAudioInternal"
+			android:text=" Play" />
+		<Button
+            android:id="@+id/btn_stop_audio_internal"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/stop"
+            android:gravity="left|center_vertical"
+            android:onClick="StopAudioInternal"
+            android:text="Stop"
+            android:visibility="gone" />
+		<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummy"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+		
+		<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Play an External Audio (From the Internet)"
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+		<TextView
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="@string/dummy"
+ 		    android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demo :"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="@string/dummy"
+ 		    android:textAppearance="?android:attr/textAppearanceSmall" />
+		<Button
+			android:id="@+id/btn_start_audio_external"
+			android:layout_width="120dp"
+			android:layout_gravity="center"
+			android:layout_height="wrap_content"
+			android:drawableLeft="@drawable/demo"
+			android:gravity="left|center_vertical"
+			android:onClick="PlayAudioExternal"
+			android:text=" Play" />
+		<Button
+            android:id="@+id/btn_stop_audio_external"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/stop"
+            android:gravity="left|center_vertical"
+            android:onClick="StopAudioExternal"
+            android:text="Stop"
+            android:visibility="gone" />
+		
+		<TextView
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="@string/dummy"
+ 		    android:textAppearance="?android:attr/textAppearanceSmall" />
+		
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Play a Video"
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+		<TextView
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="@string/dummy"
+ 		    android:textAppearance="?android:attr/textAppearanceSmall" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Demo :"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+		<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummy"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+		
+		<VideoView
+		    android:id="@+id/videoView"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" />
+		
+		<TextView
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="@string/dummy"
+ 		    android:textAppearance="?android:attr/textAppearanceSmall" />
+		<Button
+			android:id="@+id/btn_start_video"
+			android:layout_width="120dp"
+			android:layout_gravity="center"
+			android:layout_height="wrap_content"
+			android:drawableLeft="@drawable/demo"
+			android:gravity="left|center_vertical"
+			android:onClick="PlayVideo"
+			android:text=" Play" />
+		<Button
+            android:id="@+id/btn_stop_video"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/stop"
+            android:gravity="left|center_vertical"
+            android:onClick="StopVideo"
+            android:text="Stop"
+            android:visibility="gone" />
+		
+		<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummy"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+ 		<TextView
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="Android XML file:(Only for Video)"
+ 		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+ 		<TextView
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="@string/dummy"
+ 		    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <WebView
+            android:id="@+id/webViewXMLAudioVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            android:scrollbarStyle="insideOverlay" />
+		
+		<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummy"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+ 		<TextView
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="Android Java file:"
+ 		    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+ 		<TextView
+ 		    android:layout_width="wrap_content"
+ 		    android:layout_height="wrap_content"
+ 		    android:text="@string/dummy"
+ 		    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <WebView
+            android:id="@+id/webViewJavaAudioVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            android:scrollbarStyle="insideOverlay" />
+
+    </LinearLayout>
+
+</ScrollView>
+<com.google.ads.AdView
+                android:id="@+id/ad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                ads:adSize="SMART_BANNER"
+                ads:adUnitId="a151bd95bcd39b4"
+                ads:loadAdOnCreate="true"
+                ads:testDevices="82BFDD7C6AFF910A8BE833A5279E7744,2429B1FF577C9E34F1959DDD2FE57999,5BB0056619FDE9DF7497BD63E8A5511F" >
+
+</com.google.ads.AdView>
+</RelativeLayout>
