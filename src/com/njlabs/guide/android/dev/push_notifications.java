@@ -1,43 +1,59 @@
 package com.njlabs.guide.android.dev;
 
-import com.actionbarsherlock.app.ActionBar;
+import java.util.List;
+
 import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.SubMenu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
-import android.webkit.WebView;
-import android.content.Intent;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-public class ListView extends SherlockActivity {
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.list_view);
-		ActionBar actionBar = getSupportActionBar();
+/**
+ * Created by Niranjan on 5/20/13.
+ */
+public class push_notifications extends SherlockActivity {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         
-        WebView webView = (WebView) findViewById(R.id.webViewXMLListView);
-		webView.getSettings().setJavaScriptEnabled(true);		
-		webView.loadUrl("file:///android_asset/code_snippets/listview_xml.html");
-		
-        WebView webView1 = (WebView) findViewById(R.id.webViewJavaListView);
-		webView1.getSettings().setJavaScriptEnabled(true);		
-		webView1.loadUrl("file:///android_asset/code_snippets/listview_java.html");
+        LinearLayout layout = new LinearLayout(this);
+        setContentView(layout);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(16, 16, 16, 16);        
+        DatabaseHandler db = new DatabaseHandler(this);
+        List<Announcement> announcements = db.getAllAnnouncements();       
         
-	}
-	
-	public void DemoListView(View view)
-	{
-		Intent intent1 = new Intent(this, ListViewDemo.class);
-        startActivity(intent1);
-        overridePendingTransition(R.anim.fadein,R.anim.fadeout);
-	}
+        for (Announcement cn : announcements) {
+           
+            TextView atitle=new TextView(getApplicationContext());
+            atitle.setText(cn.getTitle());
+            atitle.setTextAppearance(this, android.R.style.TextAppearance_Medium);
+            layout.addView(atitle);
+            
+            TextView aalert=new TextView(getApplicationContext());
+            aalert.setText(cn.getAlert());
+            aalert.setTextAppearance(this, android.R.style.TextAppearance_Small);
+            layout.addView(aalert);
+            
+            TextView adatetime=new TextView(getApplicationContext());
+            adatetime.setText(cn.getDatetime());
+            adatetime.setTextAppearance(this, android.R.style.TextAppearance_Small);
+            layout.addView(adatetime);
+            
+            TextView dummy=new TextView(getApplicationContext());
+            dummy.setText(" ");
+            dummy.setTextAppearance(this, android.R.style.TextAppearance_Small);
+            layout.addView(dummy);
+        }
+    }
     private Menu mainMenu;
     private SubMenu subMenu1;
 

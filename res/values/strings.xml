@@ -28,5 +28,9 @@
     <string name="title_activity_threads">Threads</string>
     <string name="title_activity_timer">Timer Task</string>
     <string name="title_activity_intents">Intents</string>
+    <string name="title_activity_network">Network</string>
+    <string name="title_activity_about_app">About this App</string>
+    <string name="title_activity_bug_report">Report a Bug</string>
+    <string name="title_activity_contact_me">Contact Me</string>
 
 </resources>

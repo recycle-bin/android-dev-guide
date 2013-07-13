@@ -68,17 +68,17 @@ public class ListViewDemo extends ListActivity  {
                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 return true;
             case R.id.AboutAppOption:
-                Intent intent1 = new Intent(this, MainActivity.class);
+                Intent intent1 = new Intent(this, AboutApp.class);
                 startActivity(intent1);
                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 return true;
             case R.id.BugReportOption:
-                Intent intent2 = new Intent(this, MainActivity.class);
+                Intent intent2 = new Intent(this, BugReport.class);
                 startActivity(intent2);
                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 return true;
             case R.id.ContactOption:
-                Intent intent3 = new Intent(this, MainActivity.class);
+                Intent intent3 = new Intent(this, ContactMe.class);
                 startActivity(intent3);
                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 return true;

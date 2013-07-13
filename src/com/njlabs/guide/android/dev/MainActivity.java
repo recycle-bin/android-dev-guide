@@ -6,17 +6,26 @@ import java.util.List;
 import java.util.Map;
 
 import com.njlabs.guide.android.dev.adapters.ExpandableListAdapter;
+import com.parse.ParseAnalytics;
+import com.parse.ParseInstallation;
+import com.parse.PushService;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.SubMenu;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
@@ -27,14 +36,18 @@ public class MainActivity extends SherlockActivity {
     List<String> childList;
     Map<String, List<String>> mainCategory;
     ExpandableListView expListView;
- 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-		ActionBar actionBar = getSupportActionBar();
-		actionBar.setTitle("Android Development");
-        actionBar.setSubtitle("A small Guide !");
+        
+        PushService.setDefaultPushCallback(this, push_notifications.class);
+        ParseInstallation.getCurrentInstallation().saveInBackground();
+        ParseAnalytics.trackAppOpened(getIntent()); 
+		
+        ActionBar actionBar = getSupportActionBar();
+		actionBar.setTitle("Android Development Guide");
+        actionBar.setSubtitle("Beta");
         
         createGroupList();
  
@@ -346,6 +359,9 @@ public class MainActivity extends SherlockActivity {
                 return true;
             }
         });
+        final TelephonyManager tm =(TelephonyManager)getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
+        String deviceid = tm.getDeviceId();
+        Log.d("deviceid",deviceid);       
     }
  
     private void createGroupList() {
@@ -356,7 +372,7 @@ public class MainActivity extends SherlockActivity {
         groupList.add("Threading");
         groupList.add("Intents and types");
         groupList.add("Android System APIs");
-        groupList.add("Native Development Kit");
+        //groupList.add("Native Development Kit");
     }
  
     private void createCollection() {
@@ -416,13 +432,24 @@ public class MainActivity extends SherlockActivity {
         return (int) (pixels * scale + 0.5f);
     }
  
+    private Menu mainMenu;
+    private SubMenu subMenu1;
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-    	
-    	getSupportMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+
+        mainMenu = menu;
+
+        subMenu1 = menu.addSubMenu("Options");
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.main, subMenu1);
+
+        MenuItem subMenu1Item = subMenu1.getItem();
+        subMenu1Item.setIcon(R.drawable.abs__ic_menu_moreoverflow_normal_holo_dark);
+        subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+        return super.onCreateOptionsMenu(menu);
+    }  
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
@@ -435,17 +462,17 @@ public class MainActivity extends SherlockActivity {
                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 return true;
             case R.id.AboutAppOption:
-                Intent intent1 = new Intent(this, MainActivity.class);
+                Intent intent1 = new Intent(this, AboutApp.class);
                 startActivity(intent1);
                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 return true;
             case R.id.BugReportOption:
-                Intent intent2 = new Intent(this, MainActivity.class);
+                Intent intent2 = new Intent(this, BugReport.class);
                 startActivity(intent2);
                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 return true;
             case R.id.ContactOption:
-                Intent intent3 = new Intent(this, MainActivity.class);
+                Intent intent3 = new Intent(this, ContactMe.class);
                 startActivity(intent3);
                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 return true;
@@ -459,5 +486,13 @@ public class MainActivity extends SherlockActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+    }
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_MENU) {
+                mainMenu.performIdentifierAction(subMenu1.getItem().getItemId(), 0);
+                return true;
+        }
+        return super.onKeyUp(keyCode, event);
     }
 }
