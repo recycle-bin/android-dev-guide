@@ -312,7 +312,7 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("Camera"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), Camera.class);
                		startActivity(it);
                 }
                 else if (selected.equals("Contacts"))
@@ -322,28 +322,50 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("Phone Calls"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), PhoneCalls.class);
                		startActivity(it);
                 }
                 else if (selected.equals("SMS and MMS"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), SmsMms.class);
                		startActivity(it);
                 }
                 else if (selected.equals("Geo Location"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
-               		startActivity(it);
-                }
-                else if (selected.equals("Screen Parameters"))
-                {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), GeoLoc.class);
                		startActivity(it);
                 }
                 else if (selected.equals("Vibration"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), Vibration.class);
                		startActivity(it);
+                }
+                else if (selected.equals("Text and Speech"))
+                {
+                	final CharSequence[] items = {"Text to Speech"};
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("Select one to know more !");
+                    builder.setItems(items, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int item) {
+                               	if(items[item]=="Text to Speech")
+                               	{
+                               		Intent it  = new Intent(getBaseContext(), TextSpeech.class);
+                               		it.putExtra("title",items[item]);
+                               		it.putExtra("codesnippet","tts");
+                               		startActivity(it);
+                               	}
+                               	else if(items[item]=="Speech Recognition")
+                               	{
+                               		Intent it  = new Intent(getBaseContext(), TextSpeech.class);
+                               		it.putExtra("title",items[item]);
+                               		it.putExtra("codesnippet","speech");
+                               		startActivity(it);
+                               	} 
+                                overridePendingTransition(R.anim.fadein,R.anim.fadeout);
+                          }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
                 else if (selected.equals("What is an NDK ?"))
                 {
@@ -388,7 +410,7 @@ public class MainActivity extends SherlockActivity {
         String[] userInterface = { "Views","Dialogs","Notifications","Image Resources" };
         String[] threading = { "Regular Thread","A Thread with a handler","An AsyncTask","Timer" };
         String[] intentsTypes = { "What is an Intent?","Opening a new screen","Intents Quick reference" };
-        String[] androidSystemApis = { "Network","Audio and Video","Storage","Camera","Contacts","Phone Calls","SMS and MMS","Geo Location","Screen Parameters","Vibration" };
+        String[] androidSystemApis = { "Network","Audio and Video","Storage","Camera","Contacts","Phone Calls","SMS and MMS","Geo Location","Vibration","Text and Speech" };
         String[] ndk = { "What is an NDK ?","Using it" };
  
         mainCategory = new LinkedHashMap<String, List<String>>();

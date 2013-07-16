@@ -1,9 +1,16 @@
 package com.njlabs.guide.android.dev;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
@@ -23,6 +30,10 @@ public class Storage extends SherlockActivity {
 	String codesnippet=null;
 	EditText editText;
 	TextView status;
+	Boolean StatusError=false;	
+	
+	boolean mExternalStorageAvailable = false;
+	boolean mExternalStorageWriteable = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,6 +63,28 @@ public class Storage extends SherlockActivity {
         }
         else if(title.equals("External Memory"))
         {
+            TextView textViewManifest = (TextView) findViewById(R.id.textViewManifest);
+            WebView webViewManifest = (WebView) findViewById(R.id.webViewManifest);
+            TextView DummyManifest = (TextView) findViewById(R.id.DummyManifest);
+            textViewManifest.setVisibility(View.VISIBLE);
+            webViewManifest.setVisibility(View.VISIBLE);
+            DummyManifest.setVisibility(View.VISIBLE);
+            webViewManifest.getSettings().setJavaScriptEnabled(true);
+            webViewManifest.loadUrl("file:///android_asset/code_snippets/storage_manifest.html");
+        	// GET EXTERNAL MEMORY READ_WRITE STATE 
+        	String state = Environment.getExternalStorageState();
+        	if (Environment.MEDIA_MOUNTED.equals(state)) {
+        	    // We can read and write the media
+        	    mExternalStorageAvailable = mExternalStorageWriteable = true;
+        	} else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+        	    // We can only read the media
+        	    mExternalStorageAvailable = true;
+        	    mExternalStorageWriteable = false;
+        	} else {
+        	    // Something else is wrong. It may be one of many other states, but all we need
+        	    //  to know is we can neither read nor write
+        	    mExternalStorageAvailable = mExternalStorageWriteable = false;
+        	}
         	textView.setText("You can store Store public data on the shared external storage. (any type of file)");
         	webView.loadUrl("file:///android_asset/code_snippets/"+codesnippet+"_java.html");
         }
@@ -62,41 +95,276 @@ public class Storage extends SherlockActivity {
     	String EnteredText=editText.getText().toString();
 
         if(title.equals("Shared Preferences"))
-        {        	
+        {   
+        	///
+        	/// STORE TO SHARED PREFERENCES
+        	///
         	SharedPreferences preferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
         	SharedPreferences.Editor editor = preferences.edit();
-        	editor.putString("Demo Text", EnteredText);        
+        	editor.putString("Demo Text", EnteredText);        	
         	editor.commit();
+        	StatusError=false;
         }
         else if(title.equals("Internal Memory"))
         {
-
+        	///
+        	///  STORE TO INTERNAL MEMORY
+        	///
+        	FileOutputStream fop = null;
+			try 
+			{
+				// OPEN FILE OUTPUT STREAM
+				fop = openFileOutput("data_file.txt", Context.MODE_PRIVATE);
+				StatusError=false;
+			} 
+			catch (FileNotFoundException e) 
+			{
+				StatusError=true;
+			}  
+        	try 
+        	{
+        		if(!StatusError)
+        		{
+        			// WRITE DATA TO STREAM
+					fop.write(EnteredText.getBytes());
+					StatusError=false;
+        		}
+        	} 
+        	catch (IOException e) 
+        	{
+				StatusError=true;
+			}
+        	try 
+        	{
+        		if(!StatusError)
+        		{
+        			// FLUSH STREAM
+					fop.flush();
+					StatusError=false;
+        		}
+			} 
+        	catch (IOException e) 
+        	{
+				StatusError=true;
+			}
+        	try 
+        	{
+        		// CLOSE THE STREAM
+				fop.close();
+				StatusError=false;
+			} 
+        	catch (IOException e) 
+        	{
+				StatusError=true;
+			}
         }
         else if(title.equals("External Memory"))
         {
+        	///
+        	/// STORE TO EXTERNAL MEMORY
+        	///
+        	if(mExternalStorageAvailable==false||mExternalStorageWriteable==false)
+        	{
+        		StatusError=true;
+        	}
+        	FileOutputStream fop = null;
+        	File path = null;
+        	if(!StatusError)
+			{
+	        	path = Environment.getExternalStorageDirectory();	        	
+			}
+			try 
+			{
+				if(!StatusError)
+				{
+					fop = new FileOutputStream(new File(path, "data_file.txt"));
+					StatusError=false;
+				}
+			} 
+			catch (FileNotFoundException e) 
+			{
+				StatusError=true;
+			}
+        	try 
+        	{
+				if(!StatusError)
+				{
+					fop.write(EnteredText.getBytes());
+					StatusError=false;
+				}
+			} 
+        	catch (IOException e) 
+        	{
+				StatusError=true;
+			}
+        	try 
+        	{
+				if(!StatusError)
+				{
+					fop.flush();
+					StatusError=false;
+				}
+			} 
+        	catch (IOException e) 
+        	{
+				StatusError=true;
+			}
+        	try 
+        	{
+				if(!StatusError)
+				{
+	        		fop.close();
+					StatusError=false;
+				}
+			} 
+        	catch (IOException e) 
+        	{
+				StatusError=true;
+			}
 
         }
-        editText.setText(null, TextView.BufferType.EDITABLE);
-        status.setText("Stored !");
+        if(StatusError==false)
+        {
+	        editText.setText(null, TextView.BufferType.EDITABLE);
+	        status.setText("Stored !");
+        }
+        else
+        {
+        	if(title.equals("External Memory"))
+        	{
+        		status.setText("FileNotFound / IOException ! (Check if SD Card is present and writable)");
+        	}
+        	else
+        	{
+        		status.setText("FileNotFound / IOException");
+        	}
+        }
     }
     public void Read(View view)
     {
     	String ReadText=null;
         if(title.equals("Shared Preferences"))
         {
+        	///
+        	/// READ FROM SHARED PREFERENCES
+        	///
         	SharedPreferences preferences = getSharedPreferences("my_prefs", Context.MODE_PRIVATE);
-        	ReadText = preferences.getString("Demo Text", null);
+        	ReadText = preferences.getString("Demo Text", null);   
+        	StatusError=false;
         }
         else if(title.equals("Internal Memory"))
         {
-
+        	///
+        	/// READ FROM INTERNAL MEMORY
+        	///
+        	int ch;
+        	StringBuilder str = new StringBuilder();
+        	FileInputStream fs = null;
+			try 
+			{
+				// OPEN THE FILE
+				fs = openFileInput("data_file.txt");
+				StatusError=false;
+			} 
+			catch (FileNotFoundException e) 
+			{
+				StatusError=true;
+			}
+        	try 
+        	{    
+        		if(!StatusError)
+        		{	
+        			// GET EACH CHARACHTER
+					while ((ch = fs.read()) != -1)
+					{
+						str.append((char) ch);
+					}
+					StatusError=false;
+					// WRITE TO STRING
+					ReadText=str.toString();
+        		}
+        	} 
+        	catch (IOException e) 
+        	{
+				StatusError=true;
+			}        	
         }
         else if(title.equals("External Memory"))
         {
+        	if(mExternalStorageAvailable==false)
+        	{
+        		StatusError=true;
+        	}
+        	File path=null;
+        	FileInputStream fs = null;
+        	///
+        	/// READ FROM EXTRENAL MEMORY
+        	///
+        	int ch;
+        	StringBuilder str = new StringBuilder();
+        	if(!StatusError)
+        	{
+	        	// GET EXTERNAL STORAGE DIRECTORY FILE PATH
+	        	path = Environment.getExternalStorageDirectory();
+        	}
+        	try 
+        	{
+        		if(!StatusError)
+        		{
+					fs = new FileInputStream(new File(path, "data_file.txt"));
+					StatusError=false;
+        		}
+			}
+        	catch (FileNotFoundException e) 
+        	{
+				StatusError=true;
+			}
+        	try 
+        	{
+        		if(!StatusError)
+        		{	
+					while ((ch = fs.read()) != -1)
+					{
+						str.append((char) ch);
+					}
+					ReadText=str.toString();
+					StatusError=false;
+        		}
+			} 
+        	catch (IOException e) 
+        	{
+				StatusError=true;
+			}
+        	try 
+        	{
+        		if(!StatusError)
+        		{
+					fs.close();
+					StatusError=false;
+        		}
+			} 
+        	catch (IOException e) 
+        	{
+				StatusError=true;
+			}
 
         }
-        editText.setText(ReadText, TextView.BufferType.EDITABLE);
-        status.setText("Retrieved ! ");
+        if(StatusError==false)
+        {	
+	        editText.setText(ReadText, TextView.BufferType.EDITABLE);
+	        status.setText("Retrieved ! ");
+        }
+        else
+        {
+        	if(title.equals("External Memory"))
+        	{
+        		status.setText("Make sure You have saved something ! (Check if SD Card is present)");
+        	}
+        	else
+        	{
+        		status.setText("Make sure You have saved something !");
+        	}
+        }
     }
     public void Clear(View view)
     {

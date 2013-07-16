@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/SmsMms.java
+///
+///
+/// DIRECTLY SEND AN SMS
+///
+String PhoneNumber="+919600514966";
+String Message="The Message to be sent";
+SmsManager sms = SmsManager.getDefault();
+sms.sendTextMessage(PhoneNumber, null, Message, null, null);
+///
+/// OPEN SMS APPLICATION WITH THE NUMBERAND MESSAGE ALREADY ENTERED
+///
+String PhoneNumber="+919600514966";
+String Message="The Message to be sent";
+Intent SmsIntent = new Intent(Intent.ACTION_VIEW);
+SmsIntent.putExtra("address", Message);
+SmsIntent.putExtra("sms_body", PhoneNumber); 			
+SmsIntent.setType("vnd.android-dir/mms-sms");
+startActivity(SmsIntent); 
+///
+/// OPEN AN MMS APPLICATION WITH THE NUMBER, MEDIA FILE AND MESSAGE ALREADY ENTERED
+///
+String PhoneNumber="+919600514966";
+String Message="The Message to be sent";
+String MediaFile="/sdcard/image.png";  // PATH TO THE MEDIA FILE TO BE ATTACHED
+Intent MmsIntent = new Intent(Intent.ACTION_SEND);
+MmsIntent.putExtra("address", PhoneNumber);
+MmsIntent.putExtra("sms_body", Message);			 
+File img = new File(MediaFile);  // OPEN MEDIA FILE TO ATTACH IT
+MmsIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(img));  
+MmsIntent.setType("image/png");
+startActivity(MmsIntent);
+</pre></body></html>

@@ -43,4 +43,20 @@ while ((ch = fs.read()) != -1)  // READ CHARACTER BY CHARACTER FROM THE FILE TRE
 }
 fs.close(); // CLOSE FILE STREAM
 RetrievedString = str.toString();
+///
+/// USEFUL FILE PATHS FOR EXTERNAL STORAGE
+///
+Environment.DIRECTORY_ALARMS
+Environment.DIRECTORY_DCIM
+Environment.DIRECTORY_DOWNLOADS
+Environment.DIRECTORY_MOVIES
+Environment.DIRECTORY_MUSIC
+Environment.DIRECTORY_NOTIFICATIONS
+Environment.DIRECTORY_PICTURES
+Environment.DIRECTORY_PODCASTS
+Environment.DIRECTORY_RINGTONES
+///
+/// USAGE EXAMPLE
+///
+File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
 </pre></body></html>

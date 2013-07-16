@@ -42,6 +42,29 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
+            android:id="@+id/DummyManifest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:visibility="gone"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:id="@+id/textViewManifest"
+            android:layout_height="wrap_content"
+            android:text="But before you start, You MUST add this line in you Android Manifest file !"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:visibility="gone" />
+
+        <WebView
+            android:id="@+id/webViewManifest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbarStyle="outsideInset"
+            android:visibility="gone" />
+        
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" "
@@ -103,7 +126,7 @@
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/Clear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="Read"

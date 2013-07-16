@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/Storage.java
+///
+///
+/// STORING TO SHARED PREFERENCES
+///
+SharedPreferences preferences = getSharedPreferences("pref_file_name", Context.MODE_PRIVATE);
+SharedPreferences.Editor editor = preferences.edit();
+editor.putString("Key1", "Value to store"); // FOR A STRING VALUE
+editor.putBoolean("Key2", true); // FOR A BOOLEAN (true/false) VALUE
+editor.putFloat("Key3", 1545); // FOR A FLOAT VALUE
+editor.putInt("Key4", -1545); // FOR AN INTEGER VALUE
+editor.commit();
+///
+/// READING FROM SHARED PREFERENCES
+///
+SharedPreferences preferences = getSharedPreferences("pref_file_name", Context.MODE_PRIVATE);
+Variable1 = preferences.getString("Key1", null); // getString(key_name, default_value) // FOR STRING
+Variable2 = preferences.getBoolean("Key2", true); // getBoolean(key_name, default_value) // FOR BOOLEAN
+Variable3 = preferences.getInt("Key3", 0); // getString(key_name, default_value) // FOR FLOAT
+Variable4 = preferences.getFloat("Key4", 0); // getString(key_name, default_value) // FOR INT
+</pre></body></html>

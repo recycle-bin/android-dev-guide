@@ -34,5 +34,11 @@
     <string name="title_activity_contact_me">Contact Me</string>
     <string name="title_activity_audio_video">Audio &amp; Video</string>
     <string name="title_activity_storage">Storage</string>
+    <string name="title_activity_camera">Camera</string>
+    <string name="title_activity_phone_calls">Phone Calls</string>
+    <string name="title_activity_sms_mms">SMS &amp; MMS</string>
+    <string name="title_activity_geo_loc">Geo Location</string>
+    <string name="title_activity_vibration">Vibration</string>
+    <string name="title_activity_text_speech">Text and Speech</string>
 
 </resources>

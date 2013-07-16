@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/PhoneCalls.java
+///
+///
+/// DIRECTLY CALL A NUMBER
+///
+String PhoneNumber="+919600514966";
+Intent CallIntent = new Intent(Intent.ACTION_CALL);
+CallIntent.setData(Uri.parse("tel:"+PhoneNumber));
+startActivity(CallIntent);
+///
+/// OPEN A DIALER WITH THE NUMBER ALREADY ENTERED
+///
+String PhoneNumber="+919600514966";
+Intent DialerIntent = new Intent(Intent.ACTION_DIAL);
+DialerIntent.setData(Uri.parse("tel:"+PhoneNumber));
+startActivity(DialerIntent);
+///
+///
+///
+/// LISTEN TO THE CURRENT STATE OF THE PHONE AND PROCEED ACCORDINGLY
+///
+/// THE LISTENER CLASS
+///
+clneStateListener{
+	ass CustomPhoneStateListener extends Phopublic void onCallStateChanged(int state, String incomingNumber)
+	{
+		super.onCallStateChanged(state, incomingNumber);
+		switch (state)
+		{
+			case TelephonyManager.CALL_STATE_IDLE:
+				// PHONE IS IDLE (No activity)
+				break;
+			case TelephonyManager.CALL_STATE_OFFHOOK:
+				// AT LEAST ONE CALL EXISTS THAT IS DIALING, ACTIVE, OR ON HOLD, AND NO CALLS ARE RINGING OR WAITING 
+				break;
+			case TelephonyManager.CALL_STATE_RINGING:
+				// A NEW CALL IS RINGING OR WAITING. IN THE LATTER CASE, ANOTHER CALL IS ALREADY ACTIVE.
+				break;
+			default:
+				// DEFAULT ACTION
+				break;
+		}
+	}
+}
+///
+/// REGISTERING YOUR CUSTOM LISTNER CLASS
+///
+TelephonyManager telephonyMgr = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+telephonyMgr.listen(new CustomPhoneStateListener(), PhoneStateListenermedia.LISTEN_CALL_STATE);
+</pre></body></html>
