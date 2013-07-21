@@ -167,13 +167,9 @@
             android:label="@string/title_activity_storage" >
         </activity>
         <activity
-            android:name="com.njlabs.guide.android.dev.Camera"
+            android:name="com.njlabs.guide.android.dev.CameraPic"
             android:label="@string/title_activity_camera" >
         </activity>
-        <activity
-            android:name="com.njlabs.guide.android.dev.CameraActivity"
-            android:screenOrientation="portrait" />
-
         <uses-feature android:name="android.hardware.camera" />
         <uses-feature android:name="android.hardware.camera.autofocus" />
         <uses-feature android:name="android.hardware.camera.flash" />
@@ -193,11 +189,16 @@
         </activity>
         <activity
             android:name="com.njlabs.guide.android.dev.Vibration"
+            android:configChanges="orientation"
             android:label="@string/title_activity_vibration" >
         </activity>
         <activity
             android:name="com.njlabs.guide.android.dev.TextSpeech"
             android:label="@string/title_activity_text_speech" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.SpeechRec"
+            android:label="@string/title_activity_speech_rec" >
         </activity>
     </application>
 

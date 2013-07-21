@@ -1,5 +1,15 @@
 package com.njlabs.guide.android.dev;
 
+import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.webkit.WebView;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -7,36 +17,123 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+public class GeoLoc extends SherlockActivity implements LocationListener{
 
-public class GeoLoc extends SherlockActivity {
-
+    private TextView latitudeValue;
+    private TextView longitudeValue;
+    private TextView accuracyValue; 
+    
+    @SuppressWarnings("unused")
+	private static final int PERIOD_SECONDS=1;
+    private LocationManager mgr=null;
+    private Location lastLocation=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.geo_loc);
 		ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        WebView webView = (WebView) findViewById(R.id.webView1);
+        actionBar.setDisplayHomeAsUpEnabled(true);        
+        WebView webView = (WebView) findViewById(R.id.webViewManifest);
 		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/internet_manifest.html");		
-		WebView  webView2 = ((WebView)findViewById(R.id.webView2));
-		webView2.setWebViewClient(new WebViewClient());
-		webView2.getSettings().setJavaScriptEnabled(true);		
-		webView2.loadUrl("http://www.google.com");
-        webView = (WebView) findViewById(R.id.webViewJavaExternal);
+		webView.loadUrl("file:///android_asset/code_snippets/geo_loc_manifest.html");		
+        webView = (WebView) findViewById(R.id.webViewJava);
 		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/network_external_java.html");		
-        webView = (WebView) findViewById(R.id.webViewXMLExternal);
-		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/network_external_xml.html");		
-	
+		webView.loadUrl("file:///android_asset/code_snippets/geo_loc_java.html");		
+        latitudeValue = (TextView) findViewById(R.id.latitudeValue);
+        longitudeValue = (TextView) findViewById(R.id.longitudeValue);
+        accuracyValue = (TextView) findViewById(R.id.accuracyValue);
+        mgr=(LocationManager)getSystemService(LOCATION_SERVICE);
+        mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0,this);
+        Toast.makeText(getBaseContext(), "Waiting for location update ... ", Toast.LENGTH_LONG).show();
 	}
-    private Menu mainMenu;
+	@Override
+	  public void onDestroy() {
+	    mgr.removeUpdates(this);
+	    super.onDestroy();
+	  }
+	@Override
+	  public void onPause() {
+
+	    super.onPause();
+	  }
+	  @Override
+	  public void onLocationChanged(Location loc) {
+	    Location bestLocation=getBestLocation(loc);
+
+	    if (bestLocation != lastLocation) {
+	      lastLocation=bestLocation;
+	      latitudeValue.setText(String.valueOf(bestLocation.getLatitude()));
+	      longitudeValue.setText(String.valueOf(bestLocation.getLongitude()));
+	      accuracyValue.setText(String.valueOf(bestLocation.getAccuracy()));
+	    }
+	    else
+	    {
+	        Toast.makeText(getBaseContext(), "Waiting for location update ... ", Toast.LENGTH_LONG).show();
+	    }
+	  }
+
+	  @Override
+	  public void onProviderDisabled(String provider) {
+	    // TODO Auto-generated method stub
+
+	  }
+
+	  @Override
+	  public void onProviderEnabled(String provider) {
+	    // TODO Auto-generated method stub
+
+	  }
+
+	  @Override
+	  public void onStatusChanged(String provider, int status, Bundle extras) {
+	    // TODO Auto-generated method stub
+
+	  }
+
+	  private Location getBestLocation(Location location) {
+	    // start off by handling cases where we only have one
+	    Toast.makeText(getBaseContext(), "Waiting for location update ... ", Toast.LENGTH_LONG).show();
+	    if (lastLocation == null) {
+	      return(location);
+	    }
+
+	    Location older=
+	        (lastLocation.getTime() < location.getTime() ? lastLocation
+	            : location);
+	    Location newer=(lastLocation == older ? location : lastLocation);
+
+	    // older and less accurate fixes suck
+
+	    if (older.getAccuracy() <= newer.getAccuracy()) {
+	      return(newer);
+	    }
+
+	    // if older is within error radius of newer, assume
+	    // not moving and go with older (since has better
+	    // accuracy, else would have been caught by previous
+	    // condition)
+
+	    // ideally, this would really be "if the odds of
+	    // the older being within the error radius of the
+	    // newer are higher than 50%", taking into account
+	    // the older one's accuracy as well -- the
+	    // implementation of this is left as an exercise for the
+	    // reader
+
+	    if (newer.distanceTo(older) < newer.getAccuracy()) {
+	      return(older);
+	    }
+
+	    // if all else fails, choose the newer one -- the device
+	    // is probably moving, and so we are better off with the
+	    // newer fix, even if less accurate
+
+	    return(newer);
+	    
+	  }
+
+	private Menu mainMenu;
     private SubMenu subMenu1;
 
     @Override

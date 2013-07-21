@@ -312,7 +312,7 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("Camera"))
                 {
-                	Intent it  = new Intent(getBaseContext(), Camera.class);
+                	Intent it  = new Intent(getBaseContext(), CameraPic.class);
                		startActivity(it);
                 }
                 else if (selected.equals("Contacts"))
@@ -342,7 +342,7 @@ public class MainActivity extends SherlockActivity {
                 }
                 else if (selected.equals("Text and Speech"))
                 {
-                	final CharSequence[] items = {"Text to Speech"};
+                	final CharSequence[] items = {"Text to Speech","Speech Recognition"};
                     AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                     builder.setTitle("Select one to know more !");
                     builder.setItems(items, new DialogInterface.OnClickListener() {

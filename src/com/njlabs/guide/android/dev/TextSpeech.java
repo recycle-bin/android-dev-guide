@@ -9,33 +9,58 @@ import com.actionbarsherlock.view.SubMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.TextToSpeech.OnInitListener;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class TextSpeech extends SherlockActivity {
 
+	TextToSpeech talker;
+	String EnteredText;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.text_speech);
 		ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        WebView webView = (WebView) findViewById(R.id.webView1);
+        WebView webView = (WebView) findViewById(R.id.webViewJava);
 		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/internet_manifest.html");		
-		WebView  webView2 = ((WebView)findViewById(R.id.webView2));
-		webView2.setWebViewClient(new WebViewClient());
-		webView2.getSettings().setJavaScriptEnabled(true);		
-		webView2.loadUrl("http://www.google.com");
-        webView = (WebView) findViewById(R.id.webViewJavaExternal);
-		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/network_external_java.html");		
-        webView = (WebView) findViewById(R.id.webViewXMLExternal);
-		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/network_external_xml.html");		
+		webView.loadUrl("file:///android_asset/code_snippets/text_speech.html");				
 	
 	}
+	public void Speak(View view)
+	{
+		EditText EnteredTextField = (EditText) findViewById(R.id.text);
+		EnteredText=EnteredTextField.getText().toString();
+		if(EnteredText==null||EnteredText==""||EnteredText==" ")
+		{
+			Toast.makeText(getBaseContext(), "Please enter something...", Toast.LENGTH_SHORT).show();
+		}
+		else
+		{
+			talker = new TextToSpeech(getBaseContext(), new MyOnInitListener());
+		}
+	}
+	class MyOnInitListener implements OnInitListener
+	{
+        @Override
+        public void onInit(int status) {
+	        talker.speak(EnteredText, TextToSpeech.QUEUE_FLUSH, null);
+        }
+
+        public void onDestroy() {
+	        if (talker != null) {
+		        talker.stop();
+		        talker.shutdown();
+	        }
+        }
+	}
+	
+	
     private Menu mainMenu;
     private SubMenu subMenu1;
 

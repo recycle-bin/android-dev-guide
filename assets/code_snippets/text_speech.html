@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/TextSpeech.java
+///
+///
+///
+/// A CUSTOM SPEAKER FUNCTION
+///
+String TextToSpeak;
+public void Speak(String Text)
+{
+    TextToSpeak=Text;
+    talker = new TextToSpeech(getBaseContext(), new OnInitListenerTTS());
+}
+class OnInitListenerTTS implements OnInitListener
+{
+    @Override
+    public void onInit(int status) {
+        talker.speak(TextToSpeak, TextToSpeech.QUEUE_FLUSH, null);
+    }
+    public void onDestroy() {
+        if (talker != null) {
+            talker.stop();
+            talker.shutdown();
+        }
+    }
+}
+///
+/// TO USE THE SPEAKER FUNCTION
+///
+/// Just add the Function, Class given above and Call the following function with the Text
+///
+Speak("Text to Speak out");
+
+
+</pre></body></html>

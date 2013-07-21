@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/GeoLoc.java
+///
+package com.njlabs.guide.android.dev;
+
+import android.app.Activity;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+
+public class GeoLoc extends Activity implements LocationListener
+{
+	private static final int PERIOD_SECONDS=1;
+	private LocationManager mgr=null;
+	private Location lastLocation=null;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.geo_loc);
+		// GET THE LocationManager Service Instance FROM THE SYSTEM
+		mgr=(LocationManager)getSystemService(LOCATION_SERVICE);
+		mgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+		mgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0,this);
+	}
+	@Override
+	public void onDestroy() {
+		// STOP LOCATION UPDATE AS SSON AS THE ACTIVITY IS DESTROYED
+		mgr.removeUpdates(this);
+		super.onDestroy();
+	}
+	@Override
+	public void onLocationChanged(Location loc) {
+		// LOCATION ON CHANGE LISTNER
+		Location bestLocation=getBestLocation(loc);
+		if (bestLocation != lastLocation) {
+			lastLocation=bestLocation;
+			// RECEIVED VALUES
+			double latitude=bestLocation.getLatitude();
+			double longitude=bestLocation.getLongitude();
+			float accuracy=bestLocation.getAccuracy();
+		}
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+	}
+	@Override
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+	}
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+	}
+	// CUSTOM FUNCTION TO DETERMINE THE BEST POSSIBLE LOCATION (derived from https://github.com/commonsguy/cw-omnibus)
+	private Location getBestLocation(Location location) {
+	
+		// start off by handling cases where we only have one
+		if (lastLocation == null) {
+			return(location);
+		}
+		Location older=(lastLocation.getTime() < location.getTime() ? lastLocation: location);
+		Location newer=(lastLocation == older ? location : lastLocation);
+		
+		// older and less accurate fixes suck
+		if (older.getAccuracy() <= newer.getAccuracy()) {
+			return(newer);
+		}
+		// if older is within error radius of newer, assume
+		// not moving and go with older (since has better
+		// accuracy, else would have been caught by previous
+		// condition)
+
+		// ideally, this would really be "if the odds of
+		// the older being within the error radius of the
+		// newer are higher than 50%", taking into account
+		// the older one's accuracy as well -- the
+		// implementation of this is left as an exercise for the
+		// reader
+
+		if (newer.distanceTo(older) < newer.getAccuracy()) {
+			return(older);
+		}
+
+		// if all else fails, choose the newer one -- the device
+		// is probably moving, and so we are better off with the
+		// newer fix, even if less accurate
+		return(newer);
+	}
+}
+
+</pre></body></html>

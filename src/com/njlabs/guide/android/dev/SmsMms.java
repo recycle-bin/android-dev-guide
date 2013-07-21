@@ -52,12 +52,12 @@ public class SmsMms extends SherlockActivity {
 		String EnteredMsg=EnteredMsgField.getText().toString();
 		if(EnteredNumber==null||EnteredNumber=="")
 		{
-			Toast.makeText(getApplicationContext(), "Please enter a number...", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getBaseContext(), "Please enter a number...", Toast.LENGTH_SHORT).show();
 			error=true;
 		}
 		if(EnteredMsg==null||EnteredMsg=="")
 		{
-			Toast.makeText(getApplicationContext(), "Please enter a message...", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getBaseContext(), "Please enter a message...", Toast.LENGTH_SHORT).show();
 			error=true;
 		}
 		if(!error)

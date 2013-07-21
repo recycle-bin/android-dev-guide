@@ -40,5 +40,6 @@
     <string name="title_activity_geo_loc">Geo Location</string>
     <string name="title_activity_vibration">Vibration</string>
     <string name="title_activity_text_speech">Text and Speech</string>
+    <string name="title_activity_speech_rec">Speech Recognition</string>
 
 </resources>
