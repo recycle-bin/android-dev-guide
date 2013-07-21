@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="If you&apos;re making a Social Application, taking pictures via the user&apos;s phone camera might become an integral part. Or you may have made an app that requires to use the camera and take pictures. So, let&apos;s see how we can easily Capture pictures and store them using the Camera Intent... \n\nBut before you start, You MUST add this line in you Android Manifest file !"
+            android:text="If you want to access the user&apos;s contacts, the ContactsContaract API gives you a way of accessing.\n\nBut before you start, You MUST add this line in you Android Manifest file !"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <WebView
@@ -38,44 +38,16 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
         
         <Button
-            android:layout_width="220dp"
             android:id="@+id/demo_btn_listview"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/demo"
             android:gravity="left|center_vertical"
-            android:onClick="DemoListView"
+            android:onClick="DemoContactsList"
             android:text="See the Demo" />
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dummy"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-        
-        <TextView
-            android:id="@+id/textViewFirstApp7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Android Layout XML file:"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-		<TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/dummy"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <WebView
-            android:id="@+id/webViewXMLListView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbarStyle="insideOverlay"
-            android:scrollbars="horizontal" />
-
-        <TextView
-            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dummy"
@@ -99,8 +71,8 @@
             android:id="@+id/webViewJava"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="horizontal"
-            android:scrollbarStyle="insideOverlay" />
+            android:scrollbarStyle="insideOverlay"
+            android:scrollbars="horizontal" />
 
     </LinearLayout>
 

@@ -28,13 +28,6 @@
             android:text="If you&apos;re making a Social Application, taking pictures via the user&apos;s phone camera might become an integral part. Or you may have made an app that requires to use the camera and take pictures. So, let&apos;s see how we can easily Capture pictures and store them using the Camera Intent... \n\nBut before you start, You MUST add this line in you Android Manifest file !"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <WebView
-            android:id="@+id/webViewManifest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbarStyle="outsideInset"
-            android:scrollbars="horizontal" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,24 +52,12 @@
 		    android:layout_height="wrap_content"
 		    android:maxHeight="500dp" />
 
-		<LinearLayout
+		<Button
+		    android:id="@+id/pick"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:layout_gravity="center" >
-
-			<Button
-			    android:id="@+id/snap"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:text="Click !" />
-
-			<Button
-			    android:id="@+id/rotate"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:text="Rotate !" />
-
-		</LinearLayout>
+		    android:onClick="PickImage"
+		    android:text="Pick an Image !" />
 
 		<TextView
 		    android:layout_width="wrap_content"

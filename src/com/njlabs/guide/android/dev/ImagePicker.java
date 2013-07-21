@@ -1,6 +1,8 @@
 package com.njlabs.guide.android.dev;
 
-import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -10,85 +12,73 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.net.Uri;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-public class CameraPic extends SherlockActivity implements OnClickListener {
-	private static final int TAKE_PICTURE = 0;
-	private Uri mUri;
-	private Bitmap mPhoto;
+public class ImagePicker extends SherlockActivity {
+	private static final int REQUEST_CODE = 1;
+	private Bitmap bitmap;
+	private ImageView imageView;
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.camera);
+		setContentView(R.layout.image_picker);
 		ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        WebView webView = (WebView) findViewById(R.id.webViewManifest);
+        imageView = (ImageView) findViewById(R.id.photo_holder);
+        WebView webView = (WebView) findViewById(R.id.webViewJava);
 		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/camera_manifest.html");		
-        webView = (WebView) findViewById(R.id.webViewJava);
-		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/camera_java.html");
-		((Button) findViewById(R.id.snap)).setOnClickListener(this);
-		((Button) findViewById(R.id.rotate)).setOnClickListener(this);
+		webView.loadUrl("file:///android_asset/code_snippets/image_picker_java.html");
+	}
+
+	public void PickImage(View View)
+	{
+		Intent intent = new Intent();
+		intent.setType("image/*");
+		intent.setAction(Intent.ACTION_GET_CONTENT);
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		startActivityForResult(intent, REQUEST_CODE);
 	}
 	@Override
-	public void onClick(View v) 
-	{
-		if (v.getId()== R.id.snap) 
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		InputStream stream = null;
+		if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK)
 		{
-			Intent i = new Intent("android.media.action.IMAGE_CAPTURE");
-			File f = new File(Environment.getExternalStorageDirectory(),  "photo.jpg");
-			i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-			mUri = Uri.fromFile(f);
-			startActivityForResult(i, TAKE_PICTURE);
-		}
-		else
-		{
-			if (mPhoto!=null) 
+			try 
 			{
-				Matrix matrix = new Matrix();
-				matrix.postRotate(90);
-				mPhoto = Bitmap.createBitmap(mPhoto , 0, 0, mPhoto.getWidth(), mPhoto.getHeight(), matrix, true);
-				((ImageView)findViewById(R.id.photo_holder)).setImageBitmap(mPhoto);
-			}
-		}
-	}
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) 
-	{
-		super.onActivityResult(requestCode, resultCode, data);
-		switch (requestCode) 
-		{
-			case TAKE_PICTURE:
-			if (resultCode == Activity.RESULT_OK) 
-			{
-				getContentResolver().notifyChange(mUri, null);
-				ContentResolver cr = getContentResolver();
-				try 
+				// We need to recyle unused bitmaps
+				if (bitmap != null) 
 				{
-					mPhoto = android.provider.MediaStore.Images.Media.getBitmap(cr, mUri);
-					((ImageView)findViewById(R.id.photo_holder)).setImageBitmap(mPhoto);
-					((ImageView)findViewById(R.id.photo_holder)).getLayoutParams().height = mPhoto.getHeight()/8;
-				} 
-				catch (Exception e) 
-				{
-					Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+					bitmap.recycle();
 				}
-				
+				stream = getContentResolver().openInputStream(data.getData());
+				bitmap = BitmapFactory.decodeStream(stream);
+
+				imageView.setImageBitmap(bitmap);
+				imageView.getLayoutParams().height = bitmap.getHeight()/8;
+			}
+			catch (FileNotFoundException e)
+			{
+				e.printStackTrace();
+			}
+			if (stream != null)
+			{
+				try
+				{
+					stream.close();
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -156,4 +146,3 @@ public class CameraPic extends SherlockActivity implements OnClickListener {
         return super.onKeyUp(keyCode, event);
     }
 }
-

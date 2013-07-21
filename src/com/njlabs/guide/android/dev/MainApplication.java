@@ -9,6 +9,6 @@ public class MainApplication extends Application {
 	public void onCreate() { 
 		super.onCreate();
 		//AppRater.app_launched(this);
-	    Parse.initialize(this, "pkJJlHY3G50SV7njK0IB4va3AWufykgt0g7eDHi2", "nJlB4f3Hq1avivVu7RGMV6vmS9BMOE4KoPsekeHE"); 
+	    Parse.initialize(this, "mykey1", "mykey2"); 
 	}
 }

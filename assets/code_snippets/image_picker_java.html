@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/ImagePicker.java
+///
+package com.njlabs.guide.android.dev;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+
+public class ImagePicker extends kActivity {
+	private static final int REQUEST_CODE = 1;
+	private Bitmap bitmap;
+	private ImageView imageView;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState)
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.image_picker);
+		// IMAGEVIEW FOR PREVIEWING THE PICTURE
+		imageView = (ImageView) findViewById(R.id.photo_holder);
+	}
+	// CALL THIS FUNCTION TO PICK THE IMAGE
+	public void PickImage(View View)
+	{
+		Intent intent = new Intent();
+		intent.setType("image/*");
+		intent.setAction(Intent.ACTION_GET_CONTENT);
+		intent.addCategory(Intent.CATEGORY_OPENABLE);
+		startActivityForResult(intent, REQUEST_CODE);
+	}
+	// GETTING THE RESULT DATA FROM INTENT AFTER THE PICTURE IS SELECTED
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		InputStream stream = null;
+		if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK)
+		{
+			try 
+			{
+				// We need to recyle unused bitmaps
+				if (bitmap != null) 
+				{
+					bitmap.recycle();
+				}
+				stream = getContentResolver().openInputStream(data.getData());
+				bitmap = BitmapFactory.decodeStream(stream);
+				// DISPLAY THE TAKEN IMAGE TO THE USER VIA AN IMAGEVIEW
+				imageView.setImageBitmap(bitmap);
+				// SET IMAGEVIEW HEIGHT ACCORDING TO THE PHOTO
+				imageView.getLayoutParams().height = bitmap.getHeight()/8;
+			}
+			catch (FileNotFoundException e)
+			{
+				e.printStackTrace();
+			}
+			if (stream != null)
+			{
+				try
+				{
+					stream.close();
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+}
+</pre></body></html>

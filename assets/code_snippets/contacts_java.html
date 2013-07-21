@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/ContactsDemo.java
+///
+package com.njlabs.guide.android.dev;
+
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.v4.widget.SimpleCursorAdapter;
+import android.app.ListActivity;
+import android.database.Cursor;
+
+public class ContactsDemo extends ListActivity {
+	@Override
+	public long getSelectedItemId() {
+		// TODO Auto-generated method stub
+		return super.getSelectedItemId();
+	}
+	  
+	@Override
+	public int getSelectedItemPosition() {
+		// TODO Auto-generated method stub
+		return super.getSelectedItemPosition();
+	}
+	android.widget.ListView lv;
+	Cursor Cursor1;
+	  
+	/** Called when the activity is first created. */
+	@SuppressWarnings("deprecation")
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		//create a cursor to query the Contacts on the device to start populating a listview
+		Cursor1 = getContentResolver().query(
+		ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,null,null,null);
+		startManagingCursor(Cursor1);
+		String[] from = {ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
+				  ContactsContract.CommonDataKinds.Phone.NUMBER,
+				  ContactsContract.CommonDataKinds.Phone._ID}; // get the list items for the listadapter could be TITLE or URI
+		   
+		int[] to = {android.R.id.text1,android.R.id.text2}; //sets the items from above string to listview
+		   
+		//new listadapter, created to use android checked template
+		SimpleCursorAdapter listadapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_2, Cursor1, from, to );
+		setListAdapter(listadapter);
+		//adds listview so I can get data from it
+		lv = getListView();
+		lv.setChoiceMode(android.widget.ListView.CHOICE_MODE_MULTIPLE);		  
+	}
+}
+
+</pre></body></html>

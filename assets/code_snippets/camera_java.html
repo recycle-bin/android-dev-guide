@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/CameraPic.java
+///
+package com.njlabs.guide.android.dev;
+
+import java.io.File;
+
+import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+public class CameraPic extends Activity implements OnClickListener {
+	private static final int TAKE_PICTURE = 0;
+	private Uri mUri;
+	private Bitmap mPhoto;
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.camera);
+		// SET ONCLICK LISTENER FOR CLICK AND ROTATE BUTTONS
+		((Button) findViewById(R.id.snap)).setOnClickListener(this);
+		((Button) findViewById(R.id.rotate)).setOnClickListener(this);
+	}
+	@Override
+	public void onClick(View v) 
+	{
+		if (v.getId()== R.id.snap) 
+		{
+			// INITIALISE THE CAMERA INTENT FOR TAKING A PICTURE
+			Intent i = new Intent("android.media.action.IMAGE_CAPTURE");
+			// CREATE A FILE FOR THE CAMERA INTENT TO STORE TO
+			File f = new File(Environment.getExternalStorageDirectory(),  "photo.jpg");
+			i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+			mUri = Uri.fromFile(f);
+			// START THE ACTUALLY ACTIVITY WITH A CALLBACK FOR THE RESULT
+			startActivityForResult(i, TAKE_PICTURE);
+		}
+		else
+		{
+			if (mPhoto!=null) 
+			{
+				// ROTATING THE PICTURE DISPLAYED BY 90 degree
+				Matrix matrix = new Matrix();
+				matrix.postRotate(90);
+				mPhoto = Bitmap.createBitmap(mPhoto , 0, 0, mPhoto.getWidth(), mPhoto.getHeight(), matrix, true);
+				((ImageView)findViewById(R.id.photo_holder)).setImageBitmap(mPhoto);
+			}
+		}
+	}
+	// GETTING THE RESULT DATA FROM CAMERA INTENT AFTER THE PICTURE IS TAKEN
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) 
+	{
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) 
+		{
+			case TAKE_PICTURE:
+			if (resultCode == Activity.RESULT_OK) 
+			{
+				getContentResolver().notifyChange(mUri, null);
+				ContentResolver cr = getContentResolver();
+				try 
+				{
+					// DISPLAY THE TAKEN IMAGE TO THE USER VIA AN IMAGEVIEW
+					mPhoto = android.provider.MediaStore.Images.Media.getBitmap(cr, mUri);
+					((ImageView)findViewById(R.id.photo_holder)).setImageBitmap(mPhoto);
+					// SET IMAGEVIEW HEIGHT ACCORDING TO THE PHOTO
+					((ImageView)findViewById(R.id.photo_holder)).getLayoutParams().height = mPhoto.getHeight()/8;
+				} 
+				catch (Exception e) 
+				{
+					Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+				}
+				
+			}
+		}
+	}
+}
+</pre></body></html>

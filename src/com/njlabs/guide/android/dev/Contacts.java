@@ -1,96 +1,42 @@
 package com.njlabs.guide.android.dev;
 
-import java.io.File;
-
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.SubMenu;
 
-import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.webkit.WebView;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.content.Intent;
 
-public class CameraPic extends SherlockActivity implements OnClickListener {
-	private static final int TAKE_PICTURE = 0;
-	private Uri mUri;
-	private Bitmap mPhoto;
+public class Contacts extends SherlockActivity {
+
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.camera);
+		setContentView(R.layout.contacts);
 		ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        
         WebView webView = (WebView) findViewById(R.id.webViewManifest);
-		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/camera_manifest.html");		
-        webView = (WebView) findViewById(R.id.webViewJava);
-		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/camera_java.html");
-		((Button) findViewById(R.id.snap)).setOnClickListener(this);
-		((Button) findViewById(R.id.rotate)).setOnClickListener(this);
+		webView.getSettings().setJavaScriptEnabled(true);		
+		webView.loadUrl("file:///android_asset/code_snippets/contacts_manifest.html");
+		
+        WebView webView1 = (WebView) findViewById(R.id.webViewJava);
+		webView1.getSettings().setJavaScriptEnabled(true);		
+		webView1.loadUrl("file:///android_asset/code_snippets/contacts_java.html");
+        
 	}
-	@Override
-	public void onClick(View v) 
+	
+	public void DemoContactsList(View view)
 	{
-		if (v.getId()== R.id.snap) 
-		{
-			Intent i = new Intent("android.media.action.IMAGE_CAPTURE");
-			File f = new File(Environment.getExternalStorageDirectory(),  "photo.jpg");
-			i.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
-			mUri = Uri.fromFile(f);
-			startActivityForResult(i, TAKE_PICTURE);
-		}
-		else
-		{
-			if (mPhoto!=null) 
-			{
-				Matrix matrix = new Matrix();
-				matrix.postRotate(90);
-				mPhoto = Bitmap.createBitmap(mPhoto , 0, 0, mPhoto.getWidth(), mPhoto.getHeight(), matrix, true);
-				((ImageView)findViewById(R.id.photo_holder)).setImageBitmap(mPhoto);
-			}
-		}
-	}
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) 
-	{
-		super.onActivityResult(requestCode, resultCode, data);
-		switch (requestCode) 
-		{
-			case TAKE_PICTURE:
-			if (resultCode == Activity.RESULT_OK) 
-			{
-				getContentResolver().notifyChange(mUri, null);
-				ContentResolver cr = getContentResolver();
-				try 
-				{
-					mPhoto = android.provider.MediaStore.Images.Media.getBitmap(cr, mUri);
-					((ImageView)findViewById(R.id.photo_holder)).setImageBitmap(mPhoto);
-					((ImageView)findViewById(R.id.photo_holder)).getLayoutParams().height = mPhoto.getHeight()/8;
-				} 
-				catch (Exception e) 
-				{
-					Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-				}
-				
-			}
-		}
+		Intent intent1 = new Intent(this, ContactsDemo.class);
+        startActivity(intent1);
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout);
 	}
     private Menu mainMenu;
     private SubMenu subMenu1;
@@ -156,4 +102,3 @@ public class CameraPic extends SherlockActivity implements OnClickListener {
         return super.onKeyUp(keyCode, event);
     }
 }
-

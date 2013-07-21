@@ -41,5 +41,8 @@
     <string name="title_activity_vibration">Vibration</string>
     <string name="title_activity_text_speech">Text and Speech</string>
     <string name="title_activity_speech_rec">Speech Recognition</string>
+    <string name="title_activity_image_picker">Image Picker</string>
+    <string name="title_activity_contacts_demo">Contacts Demo</string>
+    <string name="title_activity_contacts">Contacts</string>
 
 </resources>

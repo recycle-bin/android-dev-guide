@@ -170,6 +170,7 @@
             android:name="com.njlabs.guide.android.dev.CameraPic"
             android:label="@string/title_activity_camera" >
         </activity>
+
         <uses-feature android:name="android.hardware.camera" />
         <uses-feature android:name="android.hardware.camera.autofocus" />
         <uses-feature android:name="android.hardware.camera.flash" />
@@ -199,6 +200,18 @@
         <activity
             android:name="com.njlabs.guide.android.dev.SpeechRec"
             android:label="@string/title_activity_speech_rec" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.ImagePicker"
+            android:label="@string/title_activity_image_picker" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.ContactsDemo"
+            android:label="@string/title_activity_contacts_demo" >
+        </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.Contacts"
+            android:label="@string/title_activity_contacts" >
         </activity>
     </application>
 

@@ -26,7 +26,7 @@ public class ListView extends SherlockActivity {
 		webView.getSettings().setJavaScriptEnabled(true);		
 		webView.loadUrl("file:///android_asset/code_snippets/listview_xml.html");
 		
-        WebView webView1 = (WebView) findViewById(R.id.webViewJavaListView);
+        WebView webView1 = (WebView) findViewById(R.id.webViewJava);
 		webView1.getSettings().setJavaScriptEnabled(true);		
 		webView1.loadUrl("file:///android_asset/code_snippets/listview_java.html");
         

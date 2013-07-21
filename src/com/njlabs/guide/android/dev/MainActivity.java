@@ -310,14 +310,33 @@ public class MainActivity extends SherlockActivity {
                     alert.show();
                 	
                 }
-                else if (selected.equals("Camera"))
+                else if (selected.equals("Camera/Image Picker"))
                 {
-                	Intent it  = new Intent(getBaseContext(), CameraPic.class);
-               		startActivity(it);
+                	final CharSequence[] items = {"Take a Picture via Camera","Pick an Image from the Gallery"};
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("Select one to know more !");
+                    builder.setItems(items, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int item) {
+                               	if(items[item]=="Take a Picture via Camera")
+                               	{
+                               		Intent it  = new Intent(getBaseContext(), CameraPic.class);
+                               		startActivity(it);
+                               	}
+                               	else if(items[item]=="Pick an Image from the Gallery")
+                               	{
+                               		Intent it  = new Intent(getBaseContext(), ImagePicker.class);
+                               		startActivity(it);
+                               	}
+                                overridePendingTransition(R.anim.fadein,R.anim.fadeout);
+                          }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+               		
                 }
                 else if (selected.equals("Contacts"))
                 {
-                	Intent it  = new Intent(getBaseContext(), MainActivity.class);
+                	Intent it  = new Intent(getBaseContext(), Contacts.class);
                		startActivity(it);
                 }
                 else if (selected.equals("Phone Calls"))
@@ -410,7 +429,7 @@ public class MainActivity extends SherlockActivity {
         String[] userInterface = { "Views","Dialogs","Notifications","Image Resources" };
         String[] threading = { "Regular Thread","A Thread with a handler","An AsyncTask","Timer" };
         String[] intentsTypes = { "What is an Intent?","Opening a new screen","Intents Quick reference" };
-        String[] androidSystemApis = { "Network","Audio and Video","Storage","Camera","Contacts","Phone Calls","SMS and MMS","Geo Location","Vibration","Text and Speech" };
+        String[] androidSystemApis = { "Network","Audio and Video","Storage","Camera/Image Picker","Contacts","Phone Calls","SMS and MMS","Geo Location","Vibration","Text and Speech" };
         String[] ndk = { "What is an NDK ?","Using it" };
  
         mainCategory = new LinkedHashMap<String, List<String>>();
