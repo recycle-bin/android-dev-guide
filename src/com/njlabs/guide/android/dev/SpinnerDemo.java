@@ -21,14 +21,16 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
  
 public class SpinnerDemo extends SherlockActivity implements OnItemSelectedListener{
-    @Override
+	
+	Spinner spinner;
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.spinner_demo);
 		ActionBar actionBar = getSupportActionBar();
 	       actionBar.setDisplayHomeAsUpEnabled(true);
         // Spinner element
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
  
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
@@ -60,7 +62,6 @@ public class SpinnerDemo extends SherlockActivity implements OnItemSelectedListe
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // On selecting a spinner item
         String item = parent.getItemAtPosition(position).toString();
- 
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "You have Selected: " + item, Toast.LENGTH_LONG).show();
  

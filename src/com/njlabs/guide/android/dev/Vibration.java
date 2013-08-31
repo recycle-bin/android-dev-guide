@@ -34,10 +34,10 @@ public class Vibration extends SherlockActivity {
         Status = (TextView) findViewById(R.id.status);
         WebView webView = (WebView) findViewById(R.id.webViewManifest);
 		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/sms_manifest.html");		
+		webView.loadUrl("file:///android_asset/code_snippets/vibration_manifest.html");		
         webView = (WebView) findViewById(R.id.webViewJava);
 		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/sms_mms_java.html");
+		webView.loadUrl("file:///android_asset/code_snippets/vibration_java.html");
 	}
 	
 	public void DefiniteVibrate(View view)
@@ -118,9 +118,7 @@ public class Vibration extends SherlockActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // app icon in action bar clicked; go home
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                finish();
                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 return true;
             case R.id.AboutAppOption:

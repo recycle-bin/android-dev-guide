@@ -88,7 +88,7 @@ public class BugReport extends SherlockActivity {
         	ProgressDialog dialog = new ProgressDialog(this);
         	dialog.setMessage("Sending Your Report...");
         	// AQUERY SEND
-        	String url = "http://myserver.com/bug_report.php?email="+email+"&bug_location=AGAD-"+bug_location+"&bug=AGAD-"+bug+"";
+        	String url = "http://njlabs.kovaideals.com/api/aid/bug_report.php?email="+email+"&bug_location=AGAD-"+bug_location+"&bug=AGAD-"+bug+"";
             aq.progress(dialog).ajax(url, String.class, new AjaxCallback<String>() {
                     @Override
                     public void callback(String url, String html, AjaxStatus status) { 

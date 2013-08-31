@@ -69,7 +69,6 @@ public class GeoLoc extends SherlockActivity implements LocationListener{
 	    }
 	    else
 	    {
-	        Toast.makeText(getBaseContext(), "Waiting for location update ... ", Toast.LENGTH_LONG).show();
 	    }
 	  }
 
@@ -93,7 +92,6 @@ public class GeoLoc extends SherlockActivity implements LocationListener{
 
 	  private Location getBestLocation(Location location) {
 	    // start off by handling cases where we only have one
-	    Toast.makeText(getBaseContext(), "Waiting for location update ... ", Toast.LENGTH_LONG).show();
 	    if (lastLocation == null) {
 	      return(location);
 	    }
@@ -157,9 +155,7 @@ public class GeoLoc extends SherlockActivity implements LocationListener{
         switch (item.getItemId()) {
             case android.R.id.home:
                 // app icon in action bar clicked; go home
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                finish();
                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 return true;
             case R.id.AboutAppOption:

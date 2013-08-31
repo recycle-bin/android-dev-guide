@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script src="run_prettify.js?skin=sons-of-obsidian"></script></head><body bgcolor="#000000">
+<pre class="prettyprint linenums">
+///
+/// FILE : src/com/njlabs/guide/android/dev/Vibration.java
+///
+///
+/// DEFINITE VIBRATION
+///
+Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+v.vibrate(TimeValue);
+///
+/// INDEFINITE VIBRATION
+///
+Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+// Start without a delay
+// Vibrate for 100 milliseconds
+// Sleep for 1000 milliseconds
+long[] pattern = {0, 1000, 100};
+// The '0' here means to repeat indefinitely
+// '-1' would play the vibration once
+v.vibrate(pattern, 0);	// TO START THE VIBRATION
+v.cancel();		// TO STOP THE VIBRATION
+///
+/// PATTERN VIBRATION
+///
+Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+// Start without a delay
+// Each element then alternates between vibrate, sleep, vibrate, sleep...
+long[] pattern = {0, 100, 1000, 300, 200, 100, 500, 200, 100};
+// The '-1' here means to vibrate once
+// '0' would make the pattern vibrate indefinitely
+v.vibrate(pattern, -1);
+</pre></body></html>

@@ -18,13 +18,10 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -406,9 +403,7 @@ public class MainActivity extends SherlockActivity {
                 return true;
             }
         });
-        final TelephonyManager tm =(TelephonyManager)getBaseContext().getSystemService(Context.TELEPHONY_SERVICE);
-        String deviceid = tm.getDeviceId();
-        Log.d("deviceid",deviceid);       
+   
     }
  
     private void createGroupList() {
