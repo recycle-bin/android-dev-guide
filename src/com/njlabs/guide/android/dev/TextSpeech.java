@@ -85,9 +85,7 @@ public class TextSpeech extends SherlockActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // app icon in action bar clicked; go home
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+            	finish();
                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 return true;
             case R.id.AboutAppOption:
