@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="If you&apos;re making a Social Application, taking pictures via the user&apos;s phone camera might become an integral part. Or you may have made an app that requires to use the camera and take pictures. So, let&apos;s see how we can easily Capture pictures and store them using the Camera Intent... \n\nBut before you start, You MUST add this line in you Android Manifest file !"
+            android:text="You can also request the user to pick an Image from the Phone Gallery and use it in your application."
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView

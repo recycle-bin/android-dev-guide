@@ -213,6 +213,10 @@
             android:name="com.njlabs.guide.android.dev.Contacts"
             android:label="@string/title_activity_contacts" >
         </activity>
+        <activity
+            android:name="com.njlabs.guide.android.dev.SpeechRecDemo"
+            android:label="@string/title_activity_speech_rec_demo" >
+        </activity>
     </application>
 
 </manifest>

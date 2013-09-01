@@ -372,7 +372,7 @@ public class MainActivity extends SherlockActivity {
                                	}
                                	else if(items[item]=="Speech Recognition")
                                	{
-                               		Intent it  = new Intent(getBaseContext(), TextSpeech.class);
+                               		Intent it  = new Intent(getBaseContext(), SpeechRec.class);
                                		it.putExtra("title",items[item]);
                                		it.putExtra("codesnippet","speech");
                                		startActivity(it);

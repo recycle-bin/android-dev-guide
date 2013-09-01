@@ -1,26 +1,22 @@
 package com.njlabs.guide.android.dev;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.SubMenu;
-
-import android.os.Build;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
-import android.annotation.TargetApi;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Intent;
 
-//@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.view.SubMenu;
+
 public class Notifications extends SherlockActivity {
 
 	@Override
