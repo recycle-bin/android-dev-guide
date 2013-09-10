@@ -45,5 +45,5 @@
     <string name="title_activity_contacts_demo">Contacts Demo</string>
     <string name="title_activity_contacts">Contacts</string>
     <string name="title_activity_speech_rec_demo">Speech Recognition Demo</string>
-	
+    <string name="crash_toast_text">Oops ! I Crashed ! Sorry about that ... But a report has been sent to my developer to fix me up ! :) </string>   
 </resources>

@@ -19,6 +19,7 @@ public class Intents extends SherlockActivity {
 	
 	String title=null;
 	String codesnippet=null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,7 +43,7 @@ public class Intents extends SherlockActivity {
         }
         else if(title.equals("Intents Quick reference"))
         {
-        	textView.setText("Here is a list of some common intents that can be quite useful while developing ANdroid Application.");
+        	textView.setText("Here is a list of some common intents that can be quite useful while developing Android Applications.");
         }
         WebView webView = (WebView) findViewById(R.id.webViewJava);
         Button button = (Button) findViewById(R.id.demo_btn_Intents);

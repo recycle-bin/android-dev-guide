@@ -35,11 +35,11 @@ public class ImageResources extends SherlockActivity {
         TextView textView = (TextView) findViewById(R.id.textViewImageResources);
         if(title.equals("Project Images"))
         {
-        	textView.setText("Let's see how we can easily make a simple Alert dialog with one button to dismiss it.");
+        	textView.setText("You can display some images in your application to make it look beautiful (or) maybe images are an integral part of your application. So, let's see how we can add images.\n Place the images in the drawable folders (depending on screen size)");
         }
         else if(title.equals("Bitmap Objects on Canvas"))
         {
-        	textView.setText("Here we make an Alert DIalog with two buttons to get the respose of the user");
+        	textView.setText("Android also allows you actually 'draw' any bitmap object on a canvas.");
         }
         WebView webView = (WebView) findViewById(R.id.webViewXML);
         if(title.equals("Project Images"))

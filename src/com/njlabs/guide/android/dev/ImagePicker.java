@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
@@ -63,7 +64,9 @@ public class ImagePicker extends SherlockActivity {
 				bitmap = BitmapFactory.decodeStream(stream);
 
 				imageView.setImageBitmap(bitmap);
-				imageView.getLayoutParams().height = bitmap.getHeight()/8;
+				int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+
+				imageView.getLayoutParams().height = height;
 			}
 			catch (FileNotFoundException e)
 			{

@@ -18,6 +18,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -82,7 +83,9 @@ public class CameraPic extends SherlockActivity implements OnClickListener {
 				{
 					mPhoto = android.provider.MediaStore.Images.Media.getBitmap(cr, mUri);
 					((ImageView)findViewById(R.id.photo_holder)).setImageBitmap(mPhoto);
-					((ImageView)findViewById(R.id.photo_holder)).getLayoutParams().height = mPhoto.getHeight()/8;
+					int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, getResources().getDisplayMetrics());
+
+					((ImageView)findViewById(R.id.photo_holder)).getLayoutParams().height = height;
 				} 
 				catch (Exception e) 
 				{

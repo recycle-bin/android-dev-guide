@@ -53,7 +53,7 @@ public class Storage extends SherlockActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         if(title.equals("Shared Preferences"))
         {
-        	textView.setText("Shared Preferences can Store private primitive data in key-value pairs. (Supports Boolean, STring, Float, Long and Int");
+        	textView.setText("Shared Preferences can Store private primitive data in key-value pairs. (Supports Boolean, String, Float, Long and Int");
         	webView.loadUrl("file:///android_asset/code_snippets/"+codesnippet+"_java.html");
         }
         else if(title.equals("Internal Memory"))

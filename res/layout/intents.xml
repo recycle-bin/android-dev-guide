@@ -31,12 +31,12 @@
             android:text="@string/dummy"
             android:textAppearance="?android:attr/textAppearanceSmall" />
         
-                
         <Button
-            android:layout_width="220dp"
             android:id="@+id/demo_btn_Intents"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/demo"
+            android:enabled="false"
             android:gravity="left|center_vertical"
             android:text="Demo Coming Soon" />
 
