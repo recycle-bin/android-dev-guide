@@ -1,6 +1,8 @@
 package com.njlabs.guide.android.dev;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
@@ -9,20 +11,25 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -37,12 +44,45 @@ public class CameraPic extends SherlockActivity implements OnClickListener {
 		setContentView(R.layout.camera);
 		ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+        
         WebView webView = (WebView) findViewById(R.id.webViewManifest);
+        webView.setWebViewClient(new WebViewClient(){
+        	@TargetApi(11)
+        	@Override
+        	public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+        	    Log.d("shouldInterceptRequest", url);
+
+        	    InputStream stream = inputStreamForAndroidResource(url);
+        	    if (stream != null) {
+        	        return new WebResourceResponse("text/javascript", "utf-8", stream);
+        	    }
+        	    return super.shouldInterceptRequest(view, url);
+        	}
+
+        	private InputStream inputStreamForAndroidResource(String url) {
+        	    final String ANDROID_ASSET = "file:///android_asset/";
+
+        	    if (url.contains(ANDROID_ASSET)) {
+        	        url = url.replaceFirst(ANDROID_ASSET, "");
+        	        try {
+        	            AssetManager assets = getAssets();
+        	            Uri uri = Uri.parse(url);
+        	            return assets.open(uri.getPath(), AssetManager.ACCESS_STREAMING);
+        	        } catch (IOException e) {
+        	            e.printStackTrace();
+        	        }
+        	    }
+        	    return null;
+        	}        	
+        	
+        });
 		webView.getSettings().setJavaScriptEnabled(true);
-		webView.loadUrl("file:///android_asset/code_snippets/camera_manifest.html");		
+		webView.loadUrl("file:///android_asset/code_snippets/camera_manifest.html");
+		
         webView = (WebView) findViewById(R.id.webViewJava);
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.loadUrl("file:///android_asset/code_snippets/camera_java.html");
+		
 		((Button) findViewById(R.id.snap)).setOnClickListener(this);
 		((Button) findViewById(R.id.rotate)).setOnClickListener(this);
 	}

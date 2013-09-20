@@ -1,11 +1,19 @@
 package com.njlabs.guide.android.dev;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,6 +33,36 @@ public class PhoneCalls extends SherlockActivity {
 		ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         WebView webView = (WebView) findViewById(R.id.webViewManifest);
+        webView.setWebViewClient(new WebViewClient(){
+        	@TargetApi(11)
+        	@Override
+        	public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+        	    Log.d("shouldInterceptRequest", url);
+
+        	    InputStream stream = inputStreamForAndroidResource(url);
+        	    if (stream != null) {
+        	        return new WebResourceResponse("text/javascript", "utf-8", stream);
+        	    }
+        	    return super.shouldInterceptRequest(view, url);
+        	}
+
+        	private InputStream inputStreamForAndroidResource(String url) {
+        	    final String ANDROID_ASSET = "file:///android_asset/";
+
+        	    if (url.contains(ANDROID_ASSET)) {
+        	        url = url.replaceFirst(ANDROID_ASSET, "");
+        	        try {
+        	            AssetManager assets = getAssets();
+        	            Uri uri = Uri.parse(url);
+        	            return assets.open(uri.getPath(), AssetManager.ACCESS_STREAMING);
+        	        } catch (IOException e) {
+        	            e.printStackTrace();
+        	        }
+        	    }
+        	    return null;
+        	}        	
+        	
+        });
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.loadUrl("file:///android_asset/code_snippets/phone_manifest.html");		
         webView = (WebView) findViewById(R.id.webViewJava);

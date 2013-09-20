@@ -11,15 +11,21 @@ import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 public class ImagePicker extends SherlockActivity {
@@ -36,6 +42,36 @@ public class ImagePicker extends SherlockActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         imageView = (ImageView) findViewById(R.id.photo_holder);
         WebView webView = (WebView) findViewById(R.id.webViewJava);
+        webView.setWebViewClient(new WebViewClient(){
+        	@TargetApi(11)
+        	@Override
+        	public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+        	    Log.d("shouldInterceptRequest", url);
+
+        	    InputStream stream = inputStreamForAndroidResource(url);
+        	    if (stream != null) {
+        	        return new WebResourceResponse("text/javascript", "utf-8", stream);
+        	    }
+        	    return super.shouldInterceptRequest(view, url);
+        	}
+
+        	private InputStream inputStreamForAndroidResource(String url) {
+        	    final String ANDROID_ASSET = "file:///android_asset/";
+
+        	    if (url.contains(ANDROID_ASSET)) {
+        	        url = url.replaceFirst(ANDROID_ASSET, "");
+        	        try {
+        	            AssetManager assets = getAssets();
+        	            Uri uri = Uri.parse(url);
+        	            return assets.open(uri.getPath(), AssetManager.ACCESS_STREAMING);
+        	        } catch (IOException e) {
+        	            e.printStackTrace();
+        	        }
+        	    }
+        	    return null;
+        	}        	
+        	
+        });
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.loadUrl("file:///android_asset/code_snippets/image_picker_java.html");
 	}

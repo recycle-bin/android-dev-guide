@@ -13,6 +13,7 @@ import com.actionbarsherlock.view.SubMenu;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.TextView;
 import android.content.Intent;
@@ -32,6 +33,7 @@ public class TimerDemo extends SherlockActivity {
 	
         WebView webView1 = (WebView) findViewById(R.id.webViewJava);
 		webView1.getSettings().setJavaScriptEnabled(true);		
+		webView1.setWebChromeClient(new WebChromeClient());
 		webView1.loadUrl("file:///android_asset/code_snippets/timer_java.html");
 	}
 	public void StartTimer(View view)
