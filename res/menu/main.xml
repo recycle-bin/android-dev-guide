@@ -1,7 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item android:id="@+id/AboutAppOption" android:title="About this App" android:showAsAction="never" android:orderInCategory="1"></item>
-    <item android:id="@+id/ContactOption" android:title="Contact Me" android:showAsAction="never" android:orderInCategory="2"></item>
     <item android:id="@+id/BugReportOption" android:title="Report a bug" android:showAsAction="never" android:orderInCategory="3"></item>
 
 </menu>

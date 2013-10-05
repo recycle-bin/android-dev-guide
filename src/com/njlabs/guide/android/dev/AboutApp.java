@@ -49,11 +49,6 @@ public class AboutApp extends SherlockActivity {
                 startActivity(intent2);
                 overridePendingTransition(R.anim.fadein,R.anim.fadeout);
                 return true;
-            case R.id.ContactOption:
-                Intent intent3 = new Intent(this, MainActivity.class);
-                startActivity(intent3);
-                overridePendingTransition(R.anim.fadein,R.anim.fadeout);
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
 
