@@ -2,9 +2,10 @@
 
 ## What is it?
  A featured Guide to Android Development with full working demos and code-samples.
+> The development of this was paused long back. So, don't expect to see any new API's in it. and also expect a lot of stupidity in the code (this after all was my second android app project) 
 
 > - **MIN ANDROID API :** API8
-> - **STATUS** : Work in Progress. Nearing Completion
+> - **STATUS** : Development has been **paused**
 > - **ETA** : Don't Ask !
 
 ## Planned Features
