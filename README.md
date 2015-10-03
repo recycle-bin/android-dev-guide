@@ -5,8 +5,8 @@
 > The development of this was paused long back. So, don't expect to see any new API's in it. and also expect a lot of stupidity in the code (this after all was my second android app project) 
 
 > - **MIN ANDROID API :** API8
-> - **STATUS** : Development has been **paused**
-> - **ETA** : Don't Ask !
+> - **STATUS** : Development has been **discontinued**
+> - **ETA** : :/
 
 ## Planned Features
 * Full Explanation with code samples for all Topics
